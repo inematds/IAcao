@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://game_world"]
+[gd_scene load_steps=6 format=3 uid="uid://game_world"]
 
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_world"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://area_praca_central" path="res://scenes/areas/praca_central.tscn" id="3_praca"]
 [ext_resource type="PackedScene" uid="uid://dialogue_ui" path="res://scenes/ui/dialogue_ui.tscn" id="4_dialogue_ui"]
+[ext_resource type="PackedScene" uid="uid://aria_ui" path="res://scenes/ui/aria_ui.tscn" id="5_aria_ui"]
 
 [node name="GameWorld" type="Node2D" groups=["game_world"]]
 script = ExtResource("1_world")
@@ -130,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 0.8)
 theme_override_font_sizes/font_size = 13
-text = "WASD/Setas: Mover | E: Interagir | A: ARIA | ESC: Menu"
+text = "WASD/Setas: Mover | E: Interagir | Q: ARIA | ESC: Menu"
 horizontal_alignment = 1
 
 [node name="Minimap" type="Control" parent="UI/HUD"]
@@ -155,6 +156,8 @@ grow_vertical = 2
 color = Color(0.1, 0.1, 0.15, 0.8)
 
 [node name="DialogueUI" parent="." instance=ExtResource("4_dialogue_ui")]
+
+[node name="ARIAUI" parent="." instance=ExtResource("5_aria_ui")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(28, 16)

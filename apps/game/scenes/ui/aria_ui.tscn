@@ -1,0 +1,136 @@
+[gd_scene load_steps=2 format=3 uid="uid://aria_ui"]
+
+[ext_resource type="Script" path="res://scripts/aria/aria_ui.gd" id="1_script"]
+
+[node name="ARIAUI" type="CanvasLayer"]
+layer = 15
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -280.0
+offset_right = 350.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "🤖"
+
+[node name="Title" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.85, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "ARIA - Assistente de IA"
+
+[node name="EnergyInfo" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "⚡ 100/100"
+
+[node name="Separator1" type="HSeparator" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Intro" type="Label" parent="MainPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "Escolha como posso te ajudar. Lembre-se: eu guio seu pensamento, não dou respostas prontas!"
+autowrap_mode = 2
+
+[node name="ActionsPanel" type="PanelContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="MainPanel/VBox/ActionsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ContextPanel" type="VBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ContextLabel" type="Label" parent="MainPanel/VBox/ContextPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "Descreva sua situação ou dúvida (opcional):"
+
+[node name="ContextInput" type="LineEdit" parent="MainPanel/VBox/ContextPanel"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 35)
+placeholder_text = "Ex: Estou tentando ajudar o Teco com um projeto..."
+max_length = 200
+
+[node name="ResponsePanel" type="PanelContainer" parent="MainPanel/VBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResponseText" type="RichTextLabel" parent="MainPanel/VBox/ResponsePanel"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+text = "Resposta da ARIA aparecerá aqui..."
+scroll_active = true
+scroll_following = true
+
+[node name="LoadingLabel" type="Label" parent="MainPanel/VBox/ResponsePanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "ARIA está pensando..."
+horizontal_alignment = 1
+
+[node name="Footer" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="HelpText" type="Label" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "↑↓: Navegar | Enter: Confirmar | ESC: Fechar"
+
+[node name="CloseButton" type="Button" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+text = "Fechar [ESC]"
