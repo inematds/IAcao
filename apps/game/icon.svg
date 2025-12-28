@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1f2e"/>
+      <stop offset="100%" style="stop-color:#2d3548"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d9ff"/>
+      <stop offset="100%" style="stop-color:#0099cc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="20" fill="url(#bg)"/>
+
+  <!-- ARIA orb -->
+  <circle cx="64" cy="50" r="25" fill="url(#glow)" opacity="0.9"/>
+  <circle cx="64" cy="50" r="20" fill="#00d9ff"/>
+  <circle cx="64" cy="50" r="15" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Eyes -->
+  <ellipse cx="57" cy="48" rx="4" ry="5" fill="#1a1f2e"/>
+  <ellipse cx="71" cy="48" rx="4" ry="5" fill="#1a1f2e"/>
+
+  <!-- Smile -->
+  <path d="M 55 55 Q 64 62 73 55" stroke="#1a1f2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Text: IA -->
+  <text x="64" y="100" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#00d9ff" text-anchor="middle">IA</text>
+
+  <!-- Sparkles -->
+  <circle cx="40" cy="35" r="2" fill="#ffffff" opacity="0.8"/>
+  <circle cx="88" cy="40" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="45" cy="60" r="1" fill="#ffffff" opacity="0.5"/>
+</svg>
