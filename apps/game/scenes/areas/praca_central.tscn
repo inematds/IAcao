@@ -1,0 +1,301 @@
+[gd_scene load_steps=2 format=3 uid="uid://area_praca_central"]
+
+[ext_resource type="Script" path="res://scripts/world/area_base.gd" id="1_area"]
+
+[node name="PracaCentral" type="Node2D"]
+script = ExtResource("1_area")
+area_id = "praca_central"
+area_name = "Praça Central"
+region = "vila_esperanca"
+default_spawn = "center"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.18, 0.22, 0.18, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="GrassArea" type="ColorRect" parent="Ground"]
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 1760.0
+offset_bottom = 920.0
+color = Color(0.25, 0.35, 0.22, 1)
+
+[node name="CentralPlaza" type="ColorRect" parent="Ground"]
+offset_left = 560.0
+offset_top = 340.0
+offset_right = 1360.0
+offset_bottom = 740.0
+color = Color(0.55, 0.50, 0.42, 1)
+
+[node name="Fountain" type="ColorRect" parent="Ground"]
+offset_left = 860.0
+offset_top = 480.0
+offset_right = 1060.0
+offset_bottom = 600.0
+color = Color(0.3, 0.5, 0.7, 1)
+
+[node name="Paths" type="Node2D" parent="Ground"]
+
+[node name="PathNorth" type="ColorRect" parent="Ground/Paths"]
+offset_left = 880.0
+offset_top = 160.0
+offset_right = 1040.0
+offset_bottom = 340.0
+color = Color(0.5, 0.45, 0.38, 1)
+
+[node name="PathSouth" type="ColorRect" parent="Ground/Paths"]
+offset_left = 880.0
+offset_top = 740.0
+offset_right = 1040.0
+offset_bottom = 920.0
+color = Color(0.5, 0.45, 0.38, 1)
+
+[node name="PathEast" type="ColorRect" parent="Ground/Paths"]
+offset_left = 1360.0
+offset_top = 500.0
+offset_right = 1760.0
+offset_bottom = 580.0
+color = Color(0.5, 0.45, 0.38, 1)
+
+[node name="PathWest" type="ColorRect" parent="Ground/Paths"]
+offset_left = 160.0
+offset_top = 500.0
+offset_right = 560.0
+offset_bottom = 580.0
+color = Color(0.5, 0.45, 0.38, 1)
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="Escola" type="ColorRect" parent="Buildings"]
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 500.0
+offset_bottom = 450.0
+color = Color(0.6, 0.55, 0.45, 1)
+
+[node name="EscolaRoof" type="ColorRect" parent="Buildings/Escola"]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 0.0
+color = Color(0.5, 0.25, 0.2, 1)
+
+[node name="EscolaLabel" type="Label" parent="Buildings/Escola"]
+offset_left = 80.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.3, 0.25, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "ESCOLA"
+horizontal_alignment = 1
+
+[node name="OficinaTeco" type="ColorRect" parent="Buildings"]
+offset_left = 1420.0
+offset_top = 200.0
+offset_right = 1720.0
+offset_bottom = 450.0
+color = Color(0.55, 0.5, 0.4, 1)
+
+[node name="OficinaRoof" type="ColorRect" parent="Buildings/OficinaTeco"]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 0.0
+color = Color(0.4, 0.35, 0.25, 1)
+
+[node name="OficinaLabel" type="Label" parent="Buildings/OficinaTeco"]
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 250.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.3, 0.25, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "OFICINA DO TECO"
+horizontal_alignment = 1
+
+[node name="Mercado" type="ColorRect" parent="Buildings"]
+offset_left = 200.0
+offset_top = 630.0
+offset_right = 500.0
+offset_bottom = 880.0
+color = Color(0.5, 0.55, 0.5, 1)
+
+[node name="MercadoRoof" type="ColorRect" parent="Buildings/Mercado"]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 0.0
+color = Color(0.3, 0.45, 0.3, 1)
+
+[node name="MercadoLabel" type="Label" parent="Buildings/Mercado"]
+offset_left = 80.0
+offset_top = 100.0
+offset_right = 220.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.2, 0.3, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "MERCADO"
+horizontal_alignment = 1
+
+[node name="CasaJogador" type="ColorRect" parent="Buildings"]
+offset_left = 1420.0
+offset_top = 630.0
+offset_right = 1720.0
+offset_bottom = 880.0
+color = Color(0.6, 0.5, 0.45, 1)
+
+[node name="CasaRoof" type="ColorRect" parent="Buildings/CasaJogador"]
+offset_left = -10.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 0.0
+color = Color(0.45, 0.3, 0.25, 1)
+
+[node name="CasaLabel" type="Label" parent="Buildings/CasaJogador"]
+offset_left = 70.0
+offset_top = 100.0
+offset_right = 230.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.3, 0.25, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "SUA CASA"
+horizontal_alignment = 1
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Tree1" type="ColorRect" parent="Decorations"]
+offset_left = 620.0
+offset_top = 380.0
+offset_right = 660.0
+offset_bottom = 420.0
+color = Color(0.15, 0.35, 0.15, 1)
+
+[node name="Tree2" type="ColorRect" parent="Decorations"]
+offset_left = 1260.0
+offset_top = 380.0
+offset_right = 1300.0
+offset_bottom = 420.0
+color = Color(0.15, 0.35, 0.15, 1)
+
+[node name="Tree3" type="ColorRect" parent="Decorations"]
+offset_left = 620.0
+offset_top = 680.0
+offset_right = 660.0
+offset_bottom = 720.0
+color = Color(0.15, 0.35, 0.15, 1)
+
+[node name="Tree4" type="ColorRect" parent="Decorations"]
+offset_left = 1260.0
+offset_top = 680.0
+offset_right = 1300.0
+offset_bottom = 720.0
+color = Color(0.15, 0.35, 0.15, 1)
+
+[node name="Bench1" type="ColorRect" parent="Decorations"]
+offset_left = 680.0
+offset_top = 430.0
+offset_right = 780.0
+offset_bottom = 450.0
+color = Color(0.4, 0.3, 0.2, 1)
+
+[node name="Bench2" type="ColorRect" parent="Decorations"]
+offset_left = 1140.0
+offset_top = 430.0
+offset_right = 1240.0
+offset_bottom = 450.0
+color = Color(0.4, 0.3, 0.2, 1)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint_center" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(960, 540)
+
+[node name="SpawnPoint_from_escola" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(400, 480)
+
+[node name="SpawnPoint_from_oficina" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1520, 480)
+
+[node name="SpawnPoint_from_mercado" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(400, 600)
+
+[node name="SpawnPoint_from_casa" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1520, 700)
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="TopWall" type="StaticBody2D" parent="Collisions"]
+position = Vector2(960, 140)
+
+[node name="TopWallShape" type="CollisionShape2D" parent="Collisions/TopWall"]
+shape = SubResource("RectangleShape2D_top")
+
+[node name="BottomWall" type="StaticBody2D" parent="Collisions"]
+position = Vector2(960, 940)
+
+[node name="BottomWallShape" type="CollisionShape2D" parent="Collisions/BottomWall"]
+shape = SubResource("RectangleShape2D_top")
+
+[node name="LeftWall" type="StaticBody2D" parent="Collisions"]
+position = Vector2(140, 540)
+
+[node name="LeftWallShape" type="CollisionShape2D" parent="Collisions/LeftWall"]
+shape = SubResource("RectangleShape2D_side")
+
+[node name="RightWall" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1780, 540)
+
+[node name="RightWallShape" type="CollisionShape2D" parent="Collisions/RightWall"]
+shape = SubResource("RectangleShape2D_side")
+
+[node name="Fountain" type="StaticBody2D" parent="Collisions"]
+position = Vector2(960, 540)
+
+[node name="FountainShape" type="CollisionShape2D" parent="Collisions/Fountain"]
+shape = SubResource("RectangleShape2D_fountain")
+
+[node name="EscolaBuilding" type="StaticBody2D" parent="Collisions"]
+position = Vector2(350, 325)
+
+[node name="EscolaShape" type="CollisionShape2D" parent="Collisions/EscolaBuilding"]
+shape = SubResource("RectangleShape2D_building")
+
+[node name="OficinaBuilding" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1570, 325)
+
+[node name="OficinaShape" type="CollisionShape2D" parent="Collisions/OficinaBuilding"]
+shape = SubResource("RectangleShape2D_building")
+
+[node name="MercadoBuilding" type="StaticBody2D" parent="Collisions"]
+position = Vector2(350, 755)
+
+[node name="MercadoShape" type="CollisionShape2D" parent="Collisions/MercadoBuilding"]
+shape = SubResource("RectangleShape2D_building")
+
+[node name="CasaBuilding" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1570, 755)
+
+[node name="CasaShape" type="CollisionShape2D" parent="Collisions/CasaBuilding"]
+shape = SubResource("RectangleShape2D_building")
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="Entities" type="Node2D" parent="."]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
+size = Vector2(1920, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side"]
+size = Vector2(40, 800)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fountain"]
+size = Vector2(200, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_building"]
+size = Vector2(300, 250)

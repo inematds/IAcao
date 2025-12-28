@@ -1,0 +1,251 @@
+[gd_scene load_steps=2 format=3 uid="uid://area_casa_jogador"]
+
+[ext_resource type="Script" path="res://scripts/world/area_base.gd" id="1_area"]
+
+[node name="CasaJogador" type="Node2D"]
+script = ExtResource("1_area")
+area_id = "casa_jogador"
+area_name = "Sua Casa"
+region = "vila_esperanca"
+default_spawn = "bedroom"
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.12, 0.12, 0.15, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Floor" type="ColorRect" parent="Ground"]
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 1520.0
+offset_bottom = 880.0
+color = Color(0.5, 0.45, 0.35, 1)
+
+[node name="Bedroom" type="ColorRect" parent="Ground"]
+offset_left = 450.0
+offset_top = 250.0
+offset_right = 900.0
+offset_bottom = 550.0
+color = Color(0.55, 0.52, 0.45, 1)
+
+[node name="LivingRoom" type="ColorRect" parent="Ground"]
+offset_left = 960.0
+offset_top = 250.0
+offset_right = 1470.0
+offset_bottom = 550.0
+color = Color(0.52, 0.48, 0.42, 1)
+
+[node name="Kitchen" type="ColorRect" parent="Ground"]
+offset_left = 450.0
+offset_top = 600.0
+offset_right = 900.0
+offset_bottom = 830.0
+color = Color(0.6, 0.58, 0.52, 1)
+
+[node name="StudyArea" type="ColorRect" parent="Ground"]
+offset_left = 960.0
+offset_top = 600.0
+offset_right = 1470.0
+offset_bottom = 830.0
+color = Color(0.48, 0.5, 0.52, 1)
+
+[node name="Furniture" type="Node2D" parent="."]
+
+[node name="Bed" type="ColorRect" parent="Furniture"]
+offset_left = 500.0
+offset_top = 280.0
+offset_right = 650.0
+offset_bottom = 400.0
+color = Color(0.4, 0.45, 0.6, 1)
+
+[node name="Pillow" type="ColorRect" parent="Furniture/Bed"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 40.0
+color = Color(0.9, 0.9, 0.85, 1)
+
+[node name="Wardrobe" type="ColorRect" parent="Furniture"]
+offset_left = 700.0
+offset_top = 280.0
+offset_right = 850.0
+offset_bottom = 340.0
+color = Color(0.45, 0.38, 0.3, 1)
+
+[node name="Desk" type="ColorRect" parent="Furniture"]
+offset_left = 500.0
+offset_top = 450.0
+offset_right = 650.0
+offset_bottom = 510.0
+color = Color(0.5, 0.42, 0.32, 1)
+
+[node name="Chair" type="ColorRect" parent="Furniture"]
+offset_left = 540.0
+offset_top = 510.0
+offset_right = 610.0
+offset_bottom = 540.0
+color = Color(0.35, 0.3, 0.25, 1)
+
+[node name="Sofa" type="ColorRect" parent="Furniture"]
+offset_left = 1020.0
+offset_top = 280.0
+offset_right = 1200.0
+offset_bottom = 340.0
+color = Color(0.5, 0.4, 0.35, 1)
+
+[node name="TV" type="ColorRect" parent="Furniture"]
+offset_left = 1350.0
+offset_top = 280.0
+offset_right = 1420.0
+offset_bottom = 350.0
+color = Color(0.15, 0.15, 0.2, 1)
+
+[node name="TVScreen" type="ColorRect" parent="Furniture/TV"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 65.0
+offset_bottom = 50.0
+color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="CoffeeTable" type="ColorRect" parent="Furniture"]
+offset_left = 1100.0
+offset_top = 400.0
+offset_right = 1180.0
+offset_bottom = 460.0
+color = Color(0.4, 0.35, 0.28, 1)
+
+[node name="Stove" type="ColorRect" parent="Furniture"]
+offset_left = 500.0
+offset_top = 640.0
+offset_right = 600.0
+offset_bottom = 700.0
+color = Color(0.7, 0.7, 0.72, 1)
+
+[node name="Sink" type="ColorRect" parent="Furniture"]
+offset_left = 650.0
+offset_top = 640.0
+offset_right = 730.0
+offset_bottom = 700.0
+color = Color(0.6, 0.62, 0.65, 1)
+
+[node name="Fridge" type="ColorRect" parent="Furniture"]
+offset_left = 780.0
+offset_top = 620.0
+offset_right = 860.0
+offset_bottom = 720.0
+color = Color(0.85, 0.85, 0.87, 1)
+
+[node name="DiningTable" type="ColorRect" parent="Furniture"]
+offset_left = 580.0
+offset_top = 740.0
+offset_right = 760.0
+offset_bottom = 800.0
+color = Color(0.45, 0.38, 0.3, 1)
+
+[node name="StudyDesk" type="ColorRect" parent="Furniture"]
+offset_left = 1020.0
+offset_top = 640.0
+offset_right = 1200.0
+offset_bottom = 700.0
+color = Color(0.5, 0.45, 0.38, 1)
+
+[node name="Computer" type="ColorRect" parent="Furniture"]
+offset_left = 1080.0
+offset_top = 610.0
+offset_right = 1140.0
+offset_bottom = 640.0
+color = Color(0.2, 0.2, 0.25, 1)
+
+[node name="Bookshelf" type="ColorRect" parent="Furniture"]
+offset_left = 1350.0
+offset_top = 640.0
+offset_right = 1420.0
+offset_bottom = 800.0
+color = Color(0.45, 0.38, 0.3, 1)
+
+[node name="Labels" type="Node2D" parent="."]
+
+[node name="BedroomLabel" type="Label" parent="Labels"]
+offset_left = 600.0
+offset_top = 260.0
+offset_right = 750.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.35, 0.32, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Quarto"
+horizontal_alignment = 1
+
+[node name="LivingLabel" type="Label" parent="Labels"]
+offset_left = 1150.0
+offset_top = 260.0
+offset_right = 1330.0
+offset_bottom = 290.0
+theme_override_colors/font_color = Color(0.35, 0.32, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Sala"
+horizontal_alignment = 1
+
+[node name="KitchenLabel" type="Label" parent="Labels"]
+offset_left = 600.0
+offset_top = 610.0
+offset_right = 750.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(0.35, 0.32, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Cozinha"
+horizontal_alignment = 1
+
+[node name="StudyLabel" type="Label" parent="Labels"]
+offset_left = 1150.0
+offset_top = 610.0
+offset_right = 1330.0
+offset_bottom = 640.0
+theme_override_colors/font_color = Color(0.35, 0.32, 0.28, 1)
+theme_override_font_sizes/font_size = 14
+text = "Área de Estudos"
+horizontal_alignment = 1
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="SpawnPoint_bedroom" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(675, 400)
+
+[node name="SpawnPoint_entrance" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(960, 850)
+
+[node name="SpawnPoint_study" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(1215, 715)
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="Collisions"]
+
+[node name="TopWall" type="CollisionShape2D" parent="Collisions/Walls"]
+position = Vector2(960, 180)
+shape = SubResource("RectangleShape2D_top")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Collisions/Walls"]
+position = Vector2(960, 900)
+shape = SubResource("RectangleShape2D_top")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Collisions/Walls"]
+position = Vector2(380, 540)
+shape = SubResource("RectangleShape2D_side")
+
+[node name="RightWall" type="CollisionShape2D" parent="Collisions/Walls"]
+position = Vector2(1540, 540)
+shape = SubResource("RectangleShape2D_side")
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="Entities" type="Node2D" parent="."]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_top"]
+size = Vector2(1200, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side"]
+size = Vector2(40, 720)

@@ -24,6 +24,7 @@ GameManager="*res://scripts/autoloads/game_manager.gd"
 APIClient="*res://scripts/autoloads/api_client.gd"
 SaveManager="*res://scripts/autoloads/save_manager.gd"
 AudioManager="*res://scripts/autoloads/audio_manager.gd"
+SceneManager="*res://scripts/autoloads/scene_manager.gd"
 
 [display]
 

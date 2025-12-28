@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://npc_base"]
+
+[ext_resource type="Script" path="res://scripts/npc/npc_base.gd" id="1_npc"]
+
+[node name="NPC" type="CharacterBody2D" groups=["npcs"]]
+script = ExtResource("1_npc")
+npc_name = "Morador"
+
+[node name="Shadow" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -2.0
+offset_right = 12.0
+offset_bottom = 4.0
+color = Color(0, 0, 0, 0.2)
+
+[node name="Body" type="ColorRect" parent="."]
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 14.0
+offset_bottom = 0.0
+color = Color(0.4, 0.5, 0.6, 1)
+
+[node name="Head" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -40.0
+offset_right = 10.0
+offset_bottom = -28.0
+color = Color(0.7, 0.58, 0.48, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interact")
+
+[node name="Indicator" type="Label" parent="."]
+offset_left = -40.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -40.0
+theme_override_colors/font_color = Color(1, 1, 0.9, 1)
+theme_override_font_sizes/font_size = 12
+text = "Morador"
+horizontal_alignment = 1
+visible = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(24, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 50.0
