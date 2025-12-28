@@ -58,3 +58,12 @@ secrets/
 
 # AI/Debug
 .ai/
+
+# pnpm
+pnpm-lock.yaml
+
+# Prisma
+apps/api/prisma/migrations/
+
+# Husky
+.husky/_

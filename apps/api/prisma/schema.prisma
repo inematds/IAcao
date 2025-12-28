@@ -1,0 +1,300 @@
+// ===========================================
+// IAção - Prisma Schema
+// ===========================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===========================================
+// Enums
+// ===========================================
+
+enum UserRole {
+  player
+  educator
+  parent
+}
+
+enum PlayerBackground {
+  inventor
+  artist
+  mediator
+  explorer
+}
+
+enum CompetencyType {
+  creativity
+  critical_thinking
+  communication
+  logic
+  digital_ethics
+  collaboration
+}
+
+enum MissionStatus {
+  not_started
+  in_progress
+  completed
+}
+
+enum CreationType {
+  idea
+  project
+  pitch
+}
+
+enum AIAction {
+  analyze
+  suggest
+  simulate
+  improve
+}
+
+// ===========================================
+// Models
+// ===========================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  role          UserRole
+  avatarUrl     String?   @map("avatar_url")
+  oauthProvider String    @map("oauth_provider")
+  oauthId       String    @map("oauth_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  lastLogin     DateTime? @map("last_login")
+
+  // Relations
+  playerProfile     PlayerProfile?
+  classMemberships  ClassMembership[]
+  classesAsEducator Class[]           @relation("EducatorClasses")
+  parentRelations   ParentChild[]     @relation("ParentRelation")
+  childRelations    ParentChild[]     @relation("ChildRelation")
+  refreshTokens     RefreshToken[]
+
+  @@unique([oauthProvider, oauthId])
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+model PlayerProfile {
+  id                  String           @id @default(uuid())
+  userId              String           @unique @map("user_id")
+  characterName       String           @map("character_name")
+  characterAppearance Json             @default("{}") @map("character_appearance")
+  background          PlayerBackground
+  currentRegion       String           @default("vila_esperanca") @map("current_region")
+  energy              Int              @default(100)
+  playTimeMinutes     Int              @default(0) @map("play_time_minutes")
+  worldFlags          Json             @default("{}") @map("world_flags")
+  createdAt           DateTime         @default(now()) @map("created_at")
+  updatedAt           DateTime         @updatedAt @map("updated_at")
+
+  // Relations
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  competencies      Competency[]
+  gameSaves         GameSave[]
+  missionProgress   MissionProgress[]
+  choiceLogs        ChoiceLog[]
+  creations         Creation[]
+  aiUsageLogs       AIUsageLog[]
+
+  @@index([userId])
+  @@map("player_profiles")
+}
+
+model Competency {
+  id        String         @id @default(uuid())
+  playerId  String         @map("player_id")
+  type      CompetencyType
+  level     Int            @default(0)
+  updatedAt DateTime       @updatedAt @map("updated_at")
+
+  // Relations
+  player  PlayerProfile       @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  history CompetencyHistory[]
+
+  @@unique([playerId, type])
+  @@index([playerId])
+  @@map("competencies")
+}
+
+model CompetencyHistory {
+  id           String   @id @default(uuid())
+  competencyId String   @map("competency_id")
+  oldLevel     Int      @map("old_level")
+  newLevel     Int      @map("new_level")
+  reason       String?
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  // Relations
+  competency Competency @relation(fields: [competencyId], references: [id], onDelete: Cascade)
+
+  @@index([competencyId])
+  @@index([createdAt])
+  @@map("competency_history")
+}
+
+model GameSave {
+  id        String   @id @default(uuid())
+  playerId  String   @map("player_id")
+  slot      Int
+  saveData  Json     @map("save_data")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  player PlayerProfile @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([playerId, slot])
+  @@map("game_saves")
+}
+
+model MissionProgress {
+  id                  String        @id @default(uuid())
+  playerId            String        @map("player_id")
+  missionId           String        @map("mission_id")
+  status              MissionStatus @default(not_started)
+  objectivesCompleted Json          @default("{}") @map("objectives_completed")
+  chosenBranch        String?       @map("chosen_branch")
+  startedAt           DateTime?     @map("started_at")
+  completedAt         DateTime?     @map("completed_at")
+
+  // Relations
+  player PlayerProfile @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@unique([playerId, missionId])
+  @@index([playerId])
+  @@index([status])
+  @@map("mission_progress")
+}
+
+model ChoiceLog {
+  id                   String   @id @default(uuid())
+  playerId             String   @map("player_id")
+  missionId            String?  @map("mission_id")
+  dialogueId           String   @map("dialogue_id")
+  choiceId             String   @map("choice_id")
+  choiceText           String   @map("choice_text")
+  context              Json?
+  competenciesAffected Json?    @map("competencies_affected")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  // Relations
+  player PlayerProfile @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@index([playerId])
+  @@index([createdAt])
+  @@map("choice_logs")
+}
+
+model Creation {
+  id          String       @id @default(uuid())
+  playerId    String       @map("player_id")
+  missionId   String?      @map("mission_id")
+  title       String
+  content     String
+  type        CreationType
+  evaluation  Json?
+  score       Int?
+  submittedAt DateTime?    @map("submitted_at")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  // Relations
+  player PlayerProfile @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@index([playerId])
+  @@index([missionId])
+  @@map("creations")
+}
+
+model AIUsageLog {
+  id               String   @id @default(uuid())
+  playerId         String   @map("player_id")
+  action           AIAction
+  energyCost       Int      @map("energy_cost")
+  context          Json?
+  promptTokens     Int?     @map("prompt_tokens")
+  completionTokens Int?     @map("completion_tokens")
+  responseFiltered Boolean  @default(false) @map("response_filtered")
+  latencyMs        Int?     @map("latency_ms")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  // Relations
+  player PlayerProfile @relation(fields: [playerId], references: [id], onDelete: Cascade)
+
+  @@index([playerId])
+  @@index([createdAt])
+  @@map("ai_usage_logs")
+}
+
+model Class {
+  id          String   @id @default(uuid())
+  name        String
+  educatorId  String   @map("educator_id")
+  inviteCode  String   @unique @map("invite_code")
+  maxStudents Int      @default(30) @map("max_students")
+  isArchived  Boolean  @default(false) @map("is_archived")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  // Relations
+  educator    User              @relation("EducatorClasses", fields: [educatorId], references: [id], onDelete: Cascade)
+  memberships ClassMembership[]
+
+  @@index([educatorId])
+  @@index([inviteCode])
+  @@map("classes")
+}
+
+model ClassMembership {
+  id       String   @id @default(uuid())
+  classId  String   @map("class_id")
+  userId   String   @map("user_id")
+  joinedAt DateTime @default(now()) @map("joined_at")
+
+  // Relations
+  class Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([classId, userId])
+  @@index([classId])
+  @@index([userId])
+  @@map("class_memberships")
+}
+
+model ParentChild {
+  id        String   @id @default(uuid())
+  parentId  String   @map("parent_id")
+  childId   String   @map("child_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  parent User @relation("ParentRelation", fields: [parentId], references: [id], onDelete: Cascade)
+  child  User @relation("ChildRelation", fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([parentId, childId])
+  @@map("parent_child")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  tokenHash String   @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("refresh_tokens")
+}

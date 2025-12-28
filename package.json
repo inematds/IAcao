@@ -1,19 +1,45 @@
 {
   "name": "iacao",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
+  "version": "0.1.0",
+  "private": true,
+  "description": "IAção - Educational RPG with AI Mentor",
+  "author": "IAção Team <inematds@gmail.com>",
+  "license": "UNLICENSED",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "clean": "pnpm -r run clean && rm -rf node_modules",
+    "prepare": "husky",
+    "api:dev": "pnpm --filter @iacao/api run dev",
+    "api:build": "pnpm --filter @iacao/api run build",
+    "dashboard:dev": "pnpm --filter @iacao/dashboard run dev",
+    "dashboard:build": "pnpm --filter @iacao/dashboard run build",
+    "db:migrate": "pnpm --filter @iacao/api run db:migrate",
+    "db:generate": "pnpm --filter @iacao/api run db:generate",
+    "db:seed": "pnpm --filter @iacao/api run db:seed"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
-    "bmad-method": "^4.44.3"
+    "@types/node": "^20.10.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.12.0",
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
