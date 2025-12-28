@@ -181,8 +181,19 @@ func perform_action(action: ARIAAction, additional_context: String = "") -> void
 	# Build full context
 	var full_context := _build_action_context(action, additional_context)
 
+	# Build player context for the API
+	var player_context := {
+		"playerName": session_context.get("player_name", "Jogador"),
+		"currentRegion": session_context.get("current_region", ""),
+		"currentArea": session_context.get("current_area", ""),
+		"energy": session_context.get("energy", 100),
+		"competencies": session_context.get("competencies", {}),
+		"recentDialogues": session_context.get("recent_dialogues", []),
+		"nearbyNpcs": session_context.get("nearby_npcs", [])
+	}
+
 	# Make API request
-	var response := await APIClient.query_aria(_get_action_string(action.type), full_context)
+	var response := await APIClient.query_aria(_get_action_string(action.type), additional_context, player_context)
 
 	is_processing = false
 

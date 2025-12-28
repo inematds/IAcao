@@ -355,5 +355,11 @@ func complete_mission(mission_id: String, data: Dictionary) -> Dictionary:
 
 
 # AI (ARIA)
-func query_aria(action: String, context: String = "") -> Dictionary:
-	return await post("/ai/query", {"action": action, "additionalContext": context})
+func query_aria(action: String, context: String = "", player_context: Dictionary = {}) -> Dictionary:
+	var body := {
+		"action": action,
+		"additionalContext": context
+	}
+	if not player_context.is_empty():
+		body["playerContext"] = player_context
+	return await post("/ai/query", body)
