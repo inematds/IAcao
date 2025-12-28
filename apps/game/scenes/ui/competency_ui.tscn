@@ -1,0 +1,150 @@
+[gd_scene load_steps=2 format=3 uid="uid://competency_ui"]
+
+[ext_resource type="Script" path="res://scripts/competency/competency_ui.gd" id="1_script"]
+
+[node name="CompetencyUI" type="CanvasLayer"]
+layer = 12
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -280.0
+offset_right = 320.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "📊"
+
+[node name="Title" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 22
+text = "Minhas Competências"
+
+[node name="Separator1" type="HSeparator" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="SummaryPanel" type="PanelContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="SummaryText" type="Label" parent="MainPanel/VBox/SummaryPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 13
+text = "Total: 0 pontos | Nível médio: 1.0"
+horizontal_alignment = 1
+
+[node name="CompetenciesPanel" type="PanelContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/VBox/CompetenciesPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Competencies" type="VBoxContainer" parent="MainPanel/VBox/CompetenciesPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Separator2" type="HSeparator" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="AchievementsHeader" type="Label" parent="MainPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 16
+text = "🏆 Conquistas"
+
+[node name="AchievementsPanel" type="PanelContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 100)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/VBox/AchievementsPanel"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Achievements" type="VBoxContainer" parent="MainPanel/VBox/AchievementsPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Footer" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="HelpText" type="Label" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "Desenvolva competências conversando com NPCs e usando a ARIA!"
+
+[node name="CloseButton" type="Button" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+text = "Fechar [ESC]"
+
+[node name="NotificationPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 20.0
+offset_right = 180.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="HBox" type="HBoxContainer" parent="NotificationPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Icon" type="Label" parent="NotificationPanel/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "⬆️"
+
+[node name="VBox" type="VBoxContainer" parent="NotificationPanel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Text" type="Label" parent="NotificationPanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 18
+text = "Level Up!"
+
+[node name="Subtext" type="Label" parent="NotificationPanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pensamento Crítico → Aprendiz"

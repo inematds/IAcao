@@ -27,6 +27,7 @@ AudioManager="*res://scripts/autoloads/audio_manager.gd"
 SceneManager="*res://scripts/autoloads/scene_manager.gd"
 DialogueManager="*res://scripts/dialogue/dialogue_manager.gd"
 ARIAManager="*res://scripts/aria/aria_manager.gd"
+CompetencyManager="*res://scripts/competency/competency_manager.gd"
 
 [display]
 
