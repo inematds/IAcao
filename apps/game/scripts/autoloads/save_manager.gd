@@ -157,3 +157,73 @@ func get_default_settings() -> Dictionary:
 		"fullscreen": false,
 		"language": "pt_BR"
 	}
+
+
+# ===========================================
+# Secure Data (for auth tokens, etc.)
+# ===========================================
+
+const SECURE_PATH := "user://secure/"
+
+func _ensure_secure_directory() -> void:
+	var dir := DirAccess.open("user://")
+	if dir and not dir.dir_exists("secure"):
+		dir.make_dir("secure")
+
+
+func save_secure_data(key: String, data: Dictionary) -> bool:
+	_ensure_secure_directory()
+	var file_path := SECURE_PATH + key + ".dat"
+	var file := FileAccess.open(file_path, FileAccess.WRITE)
+
+	if file == null:
+		push_error("[SaveManager] Failed to save secure data: ", key)
+		return false
+
+	# Simple obfuscation (not true encryption, but prevents casual inspection)
+	var json_str := JSON.stringify(data)
+	var encoded := Marshalls.utf8_to_base64(json_str)
+	file.store_string(encoded)
+	file.close()
+
+	return true
+
+
+func load_secure_data(key: String) -> Dictionary:
+	var file_path := SECURE_PATH + key + ".dat"
+
+	if not FileAccess.file_exists(file_path):
+		return {}
+
+	var file := FileAccess.open(file_path, FileAccess.READ)
+	if file == null:
+		return {}
+
+	var encoded := file.get_as_text()
+	file.close()
+
+	var json_str := Marshalls.base64_to_utf8(encoded)
+	if json_str == "":
+		return {}
+
+	var json := JSON.new()
+	var error := json.parse(json_str)
+
+	if error != OK:
+		return {}
+
+	return json.data
+
+
+func delete_secure_data(key: String) -> bool:
+	var file_path := SECURE_PATH + key + ".dat"
+
+	if not FileAccess.file_exists(file_path):
+		return true
+
+	var dir := DirAccess.open(SECURE_PATH)
+	if dir:
+		var error := dir.remove(key + ".dat")
+		return error == OK
+
+	return false

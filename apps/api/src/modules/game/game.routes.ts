@@ -3,9 +3,10 @@
 // ===========================================
 
 import { Router, Request, Response } from 'express';
-import { ApiResponse } from '@iacao/shared';
+import type { Router as IRouter } from 'express';
+import { ApiResponse } from '../../types';
 
-export const gameRoutes = Router();
+export const gameRoutes: IRouter = Router();
 
 // Placeholder routes - will be implemented in later stories
 gameRoutes.get('/load', (req: Request, res: Response<ApiResponse>) => {

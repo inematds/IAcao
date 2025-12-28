@@ -3,9 +3,10 @@
 // ===========================================
 
 import { Router, Request, Response } from 'express';
-import { ApiResponse } from '@iacao/shared';
+import type { Router as IRouter } from 'express';
+import { ApiResponse } from '../../types';
 
-export const userRoutes = Router();
+export const userRoutes: IRouter = Router();
 
 // Placeholder - will be implemented after auth
 userRoutes.get('/me', (req: Request, res: Response<ApiResponse>) => {

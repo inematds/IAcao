@@ -2,7 +2,7 @@
 // IAção API - Custom Errors
 // ===========================================
 
-import { HttpStatus } from '@iacao/shared';
+import { HttpStatus } from './httpStatus';
 
 export class ApplicationError extends Error {
   public readonly statusCode: number;

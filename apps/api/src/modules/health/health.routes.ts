@@ -3,10 +3,11 @@
 // ===========================================
 
 import { Router, Request, Response } from 'express';
+import type { Router as IRouter } from 'express';
 import { prisma } from '../../config/database';
-import { ApiResponse } from '@iacao/shared';
+import { ApiResponse } from '../../types';
 
-export const healthRoutes = Router();
+export const healthRoutes: IRouter = Router();
 
 interface HealthStatus {
   status: 'healthy' | 'unhealthy';

@@ -2,6 +2,8 @@
 // Game Types
 // ===========================================
 
+import type { PlayerProfile } from './user';
+
 export type CompetencyType =
   | 'creativity'
   | 'critical_thinking'
@@ -95,18 +97,4 @@ export interface InventoryItem {
   id: string;
   itemId: string;
   quantity: number;
-}
-
-export interface PlayerProfile {
-  id: string;
-  userId: string;
-  characterName: string;
-  characterAppearance: Record<string, unknown>;
-  background: string;
-  currentRegion: string;
-  energy: number;
-  playTimeMinutes: number;
-  worldFlags: Record<string, boolean>;
-  createdAt: Date;
-  updatedAt: Date;
 }

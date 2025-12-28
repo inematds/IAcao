@@ -3,7 +3,8 @@
 // ===========================================
 
 import { Request, Response } from 'express';
-import { ApiResponse, HttpStatus } from '@iacao/shared';
+import { HttpStatus } from '../utils/httpStatus';
+import { ApiResponse } from '../types';
 
 export function notFoundHandler(req: Request, res: Response<ApiResponse>): void {
   res.status(HttpStatus.NOT_FOUND).json({

@@ -6,7 +6,8 @@ import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
 import { ApplicationError } from '../utils/errors';
 import { logger } from '../utils/logger';
-import { ApiResponse, HttpStatus } from '@iacao/shared';
+import { HttpStatus } from '../utils/httpStatus';
+import { ApiResponse } from '../types';
 
 export function errorHandler(
   error: Error,

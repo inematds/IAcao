@@ -9,6 +9,7 @@ import pinoHttp from 'pino-http';
 
 import { config } from './config';
 import { connectDatabase } from './config/database';
+import { passport } from './config/passport';
 import { logger } from './utils/logger';
 import { errorHandler } from './middleware/errorHandler';
 import { notFoundHandler } from './middleware/notFoundHandler';
@@ -38,6 +39,9 @@ export async function createApp(): Promise<Express> {
   // Body parsing
   app.use(express.json({ limit: '10kb' }));
   app.use(express.urlencoded({ extended: true }));
+
+  // Initialize Passport (no session - we use JWT)
+  app.use(passport.initialize());
 
   // Request logging
   app.use(
