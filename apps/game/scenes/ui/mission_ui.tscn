@@ -1,0 +1,189 @@
+[gd_scene load_steps=2 format=3 uid="uid://mission_ui"]
+
+[ext_resource type="Script" path="res://scripts/mission/mission_ui.gd" id="1_script"]
+
+[node name="MissionUI" type="CanvasLayer"]
+layer = 13
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -280.0
+offset_right = 350.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "📜"
+
+[node name="Title" type="Label" parent="MainPanel/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.95, 0.9, 0.7, 1)
+theme_override_font_sizes/font_size = 22
+text = "Diário de Missões"
+
+[node name="Separator" type="HSeparator" parent="MainPanel/VBox"]
+layout_mode = 2
+
+[node name="Tabs" type="TabContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Ativas" type="Control" parent="MainPanel/VBox/Tabs"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/VBox/Tabs/Ativas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MissionList" type="VBoxContainer" parent="MainPanel/VBox/Tabs/Ativas/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Disponíveis" type="Control" parent="MainPanel/VBox/Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/VBox/Tabs/Disponíveis"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MissionList" type="VBoxContainer" parent="MainPanel/VBox/Tabs/Disponíveis/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Completadas" type="Control" parent="MainPanel/VBox/Tabs"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/VBox/Tabs/Completadas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="MissionList" type="VBoxContainer" parent="MainPanel/VBox/Tabs/Completadas/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Footer" type="HBoxContainer" parent="MainPanel/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="HelpText" type="Label" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "J: Abrir/Fechar | 📍: Rastrear missão"
+
+[node name="CloseButton" type="Button" parent="MainPanel/VBox/Footer"]
+layout_mode = 2
+text = "Fechar [ESC]"
+
+[node name="TrackerPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 70.0
+offset_right = -20.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="VBox" type="VBoxContainer" parent="TrackerPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="TrackerPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 14
+text = "Missão Atual"
+
+[node name="Objectives" type="VBoxContainer" parent="TrackerPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="NotificationPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -100.0
+offset_right = 180.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="NotificationPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Icon" type="Label" parent="NotificationPanel/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "📜"
+
+[node name="VBox" type="VBoxContainer" parent="NotificationPanel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="NotificationPanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Nova Missão!"
+
+[node name="Text" type="Label" parent="NotificationPanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 13
+text = "Nome da missão"
