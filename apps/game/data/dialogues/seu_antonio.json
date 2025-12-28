@@ -1,0 +1,178 @@
+{
+  "id": "seu_antonio",
+  "npc_name": "Seu Antônio",
+  "npc_id": "seu_antonio",
+  "portrait": "seu_antonio",
+  "start": "check_proposal",
+  "lines": {
+    "check_proposal": {
+      "id": "check_proposal",
+      "text": "",
+      "conditions": [
+        {"type": "flag", "key": "proposal_presented", "operator": "==", "value": true}
+      ],
+      "next": "skeptic_greeting"
+    },
+    "skeptic_greeting": {
+      "id": "skeptic_greeting",
+      "speaker": "Seu Antônio",
+      "text": "Humm... você é aquele jovem que está querendo mudar a praça, né? Ouvi falar das suas ideias.",
+      "emotion": "skeptical",
+      "next": "skeptic_challenge"
+    },
+    "skeptic_challenge": {
+      "id": "skeptic_challenge",
+      "text": "Deixa eu te perguntar uma coisa: por que deveríamos confiar em alguém tão jovem para decidir o futuro da nossa praça?",
+      "emotion": "challenging",
+      "choices": [
+        {
+          "id": "humble_response",
+          "text": "Não é minha decisão, é da comunidade. Só estou ajudando a ouvir todos.",
+          "next": "response_humble",
+          "relationship_points": 5,
+          "competency_effects": {
+            "communication": 3,
+            "civic_responsibility": 2
+          }
+        },
+        {
+          "id": "confident_response",
+          "text": "Porque juventude traz ideias novas e energia!",
+          "next": "response_confident",
+          "relationship_points": 2
+        },
+        {
+          "id": "question_back",
+          "text": "E o senhor, o que acha que deveria ser feito?",
+          "next": "response_question",
+          "relationship_points": 4,
+          "competency_effects": {
+            "critical_thinking": 2
+          }
+        }
+      ]
+    },
+    "response_humble": {
+      "id": "response_humble",
+      "text": "Hmm... isso é... inesperadamente sábio vindo de alguém da sua idade. Você está certo, é uma decisão de todos.",
+      "emotion": "surprised",
+      "effects": [
+        {"type": "set_npc_flag", "key": "impressed", "value": true}
+      ],
+      "next": "opening_up"
+    },
+    "response_confident": {
+      "id": "response_confident",
+      "text": "Energia não falta em lugar nenhum! O que falta é respeito pela experiência. Vai ter que fazer melhor que isso.",
+      "emotion": "unimpressed",
+      "next": "second_chance"
+    },
+    "response_question": {
+      "id": "response_question",
+      "text": "Hmm, pelo menos você sabe ouvir. Eu acho que a praça deveria continuar sendo um lugar de encontro, como sempre foi.",
+      "emotion": "thoughtful",
+      "next": "opening_up"
+    },
+    "second_chance": {
+      "id": "second_chance",
+      "text": "Vou te dar outra chance. Me convença por que sua proposta é boa para TODOS, não só para os jovens.",
+      "emotion": "testing",
+      "choices": [
+        {
+          "id": "choice_convince",
+          "text": "A proposta beneficia todas as gerações porque...",
+          "next": "convinced",
+          "relationship_points": 6,
+          "competency_effects": {
+            "communication": 3
+          }
+        },
+        {
+          "id": "admit_learning",
+          "text": "O senhor tem razão. Preciso pensar melhor nisso.",
+          "next": "respect_earned",
+          "relationship_points": 4
+        }
+      ]
+    },
+    "opening_up": {
+      "id": "opening_up",
+      "text": "Olha, vou ser sincero. Tenho medo de mudanças. Essa praça guarda muitas memórias para mim.",
+      "emotion": "vulnerable",
+      "next": "share_memory"
+    },
+    "share_memory": {
+      "id": "share_memory",
+      "text": "Foi aqui que conheci minha esposa, há 40 anos. Foi aqui que meus filhos brincaram quando eram pequenos.",
+      "emotion": "nostalgic",
+      "next": "final_choice"
+    },
+    "final_choice": {
+      "id": "final_choice",
+      "text": "Me promete uma coisa: não importa o que mudar, que a alma da praça continue a mesma?",
+      "choices": [
+        {
+          "id": "choice_convince",
+          "text": "Prometo! A história e as memórias serão preservadas.",
+          "next": "convinced",
+          "relationship_points": 8,
+          "competency_effects": {
+            "civic_responsibility": 3,
+            "communication": 2
+          }
+        },
+        {
+          "id": "honest_answer",
+          "text": "Não posso prometer tudo, mas farei o possível.",
+          "next": "convinced_honest",
+          "relationship_points": 6,
+          "competency_effects": {
+            "digital_ethics": 2
+          }
+        }
+      ]
+    },
+    "convinced": {
+      "id": "convinced",
+      "text": "Você tem um bom coração, jovem. Terei apoiar essa proposta. Mas estarei de olho!",
+      "emotion": "accepting",
+      "effects": [
+        {"type": "set_flag", "key": "antonio_convinced", "value": true},
+        {"type": "set_npc_flag", "key": "supporter", "value": true}
+      ],
+      "next": "farewell"
+    },
+    "convinced_honest": {
+      "id": "convinced_honest",
+      "text": "Pelo menos você é honesto. Respeito isso. Vou dar uma chance à sua proposta.",
+      "emotion": "respectful",
+      "effects": [
+        {"type": "set_flag", "key": "antonio_convinced", "value": true},
+        {"type": "set_npc_flag", "key": "cautious_supporter", "value": true}
+      ],
+      "next": "farewell"
+    },
+    "respect_earned": {
+      "id": "respect_earned",
+      "text": "Humildade é uma virtude rara. Quando você tiver uma proposta melhor pensada, volte para conversar.",
+      "emotion": "approving",
+      "effects": [
+        {"type": "set_npc_flag", "key": "respected", "value": true}
+      ],
+      "next": "end"
+    },
+    "farewell": {
+      "id": "farewell",
+      "text": "Agora vá lá e continue seu trabalho. A vila precisa de jovens como você.",
+      "emotion": "encouraging",
+      "next": "end"
+    },
+    "default_greeting": {
+      "id": "default_greeting",
+      "speaker": "Seu Antônio",
+      "text": "Mais um jovem querendo mudar tudo... Não tenho tempo para conversa fiada.",
+      "emotion": "grumpy",
+      "next": "end"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+[gd_scene load_steps=2 format=3 uid="uid://tutorial_ui"]
+
+[ext_resource type="Script" path="res://scripts/tutorial/tutorial_ui.gd" id="1_script"]
+
+[node name="TutorialUI" type="CanvasLayer"]
+layer = 15
+script = ExtResource("1_script")
+
+[node name="HintPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBox" type="HBoxContainer" parent="HintPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Icon" type="Label" parent="HintPanel/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "💡"
+
+[node name="Label" type="Label" parent="HintPanel/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "Pressione E para interagir"
+
+[node name="ChecklistPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 250.0
+grow_horizontal = 0
+
+[node name="VBox" type="VBoxContainer" parent="ChecklistPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="ChecklistPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+text = "📋 Tutorial"
+
+[node name="Separator" type="HSeparator" parent="ChecklistPanel/VBox"]
+layout_mode = 2
+
+[node name="Items" type="VBoxContainer" parent="ChecklistPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="IntroPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="IntroPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Title" type="Label" parent="IntroPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_font_sizes/font_size = 24
+text = "Bem-vindo!"
+horizontal_alignment = 1
+
+[node name="Text" type="Label" parent="IntroPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "Prepare-se para uma aventura incrível!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="IntroPanel/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Continue" type="Button" parent="IntroPanel/VBox/Buttons"]
+custom_minimum_size = Vector2(140, 45)
+layout_mode = 2
+text = "Continuar"
+
+[node name="Skip" type="Button" parent="IntroPanel/VBox/Buttons"]
+custom_minimum_size = Vector2(140, 45)
+layout_mode = 2
+text = "Pular Tutorial"

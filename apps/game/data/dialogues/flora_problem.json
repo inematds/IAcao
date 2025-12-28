@@ -1,0 +1,80 @@
+{
+  "id": "flora_problem",
+  "npc_name": "Dona Flora",
+  "npc_id": "dona_flora",
+  "portrait": "dona_flora",
+  "start": "intro_problem",
+  "lines": {
+    "intro_problem": {
+      "id": "intro_problem",
+      "speaker": "Dona Flora",
+      "text": "{player_name}, que bom que você veio! Temos um problema sério na vila que precisa de atenção.",
+      "emotion": "worried",
+      "next": "explain_problem"
+    },
+    "explain_problem": {
+      "id": "explain_problem",
+      "text": "A praça central está precisando de melhorias. O coreto está deteriorado, os bancos estão quebrados e o jardim precisa de cuidados.",
+      "emotion": "concerned",
+      "next": "community_divided"
+    },
+    "community_divided": {
+      "id": "community_divided",
+      "text": "O problema é que a comunidade está dividida sobre o que fazer. Alguns querem reformar, outros querem construir algo novo.",
+      "emotion": "thoughtful",
+      "next": "ask_help"
+    },
+    "ask_help": {
+      "id": "ask_help",
+      "text": "Você poderia me ajudar a entender o que os moradores pensam? Talvez possamos encontrar uma solução que agrade a todos.",
+      "choices": [
+        {
+          "id": "accept_help",
+          "text": "Claro! Vou conversar com as pessoas.",
+          "next": "accept_response",
+          "relationship_points": 5,
+          "competency_effects": {
+            "collaboration": 2,
+            "civic_responsibility": 1
+          }
+        },
+        {
+          "id": "ask_more",
+          "text": "Quem devo procurar?",
+          "next": "give_names",
+          "relationship_points": 2
+        },
+        {
+          "id": "use_aria",
+          "text": "Posso usar a ARIA para ajudar?",
+          "next": "aria_suggestion",
+          "relationship_points": 3
+        }
+      ]
+    },
+    "accept_response": {
+      "id": "accept_response",
+      "text": "Sabia que podia contar com você! Converse com pelo menos 3 moradores e depois volte para me contar o que descobriu.",
+      "emotion": "relieved",
+      "effects": [
+        {"type": "set_flag", "key": "helping_community", "value": true}
+      ],
+      "next": "end"
+    },
+    "give_names": {
+      "id": "give_names",
+      "text": "O Teco tem ideias modernas, a Professora Maria pensa na educação, e o Seu João representa os mais velhos. Cada um tem uma perspectiva diferente.",
+      "emotion": "explaining",
+      "next": "accept_response"
+    },
+    "aria_suggestion": {
+      "id": "aria_suggestion",
+      "text": "A ARIA? Que boa ideia! Depois de ouvir as opiniões, você pode usar ela para analisar tudo e encontrar padrões. Vocês formam uma boa dupla!",
+      "emotion": "impressed",
+      "competency_effects": {
+        "digital_ethics": 1
+      },
+      "next": "accept_response"
+    }
+  }
+}

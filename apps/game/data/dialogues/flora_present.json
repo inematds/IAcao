@@ -1,0 +1,134 @@
+{
+  "id": "flora_present",
+  "npc_name": "Dona Flora",
+  "npc_id": "dona_flora",
+  "portrait": "dona_flora",
+  "start": "greeting_present",
+  "lines": {
+    "greeting_present": {
+      "id": "greeting_present",
+      "speaker": "Dona Flora",
+      "text": "Ah, {player_name}! Voltou! Pelo seu olhar, parece que tem algo para me contar...",
+      "emotion": "curious",
+      "next": "ask_findings"
+    },
+    "ask_findings": {
+      "id": "ask_findings",
+      "text": "Então, o que você descobriu conversando com os moradores? Conseguiu usar a ARIA para analisar?",
+      "choices": [
+        {
+          "id": "present_analysis",
+          "text": "Sim! Analisei tudo e tenho uma proposta.",
+          "next": "listen_proposal",
+          "relationship_points": 5,
+          "competency_effects": {
+            "communication": 2
+          }
+        },
+        {
+          "id": "need_more_time",
+          "text": "Ainda estou trabalhando nisso...",
+          "next": "encourage",
+          "relationship_points": 1
+        }
+      ]
+    },
+    "listen_proposal": {
+      "id": "listen_proposal",
+      "text": "Que maravilha! Estou toda ouvidos. Me conte sua proposta!",
+      "emotion": "excited",
+      "next": "proposal_options"
+    },
+    "proposal_options": {
+      "id": "proposal_options",
+      "text": "Como você resumiria sua ideia para a praça?",
+      "choices": [
+        {
+          "id": "proposal_renovate",
+          "text": "Renovar mantendo a história da vila",
+          "next": "response_renovate",
+          "relationship_points": 5,
+          "competency_effects": {
+            "critical_thinking": 3
+          }
+        },
+        {
+          "id": "proposal_modern",
+          "text": "Modernizar com tecnologia e sustentabilidade",
+          "next": "response_modern",
+          "relationship_points": 5,
+          "competency_effects": {
+            "creativity": 3
+          }
+        },
+        {
+          "id": "proposal_mixed",
+          "text": "Combinar tradição com inovação",
+          "next": "response_mixed",
+          "relationship_points": 8,
+          "competency_effects": {
+            "critical_thinking": 2,
+            "creativity": 2
+          }
+        }
+      ]
+    },
+    "response_renovate": {
+      "id": "response_renovate",
+      "text": "Respeitar nossa história é muito importante! Os mais velhos vão gostar disso. Mas será que os jovens não ficarão desapontados?",
+      "emotion": "thoughtful",
+      "effects": [
+        {"type": "set_flag", "key": "proposal_type", "value": "traditional"}
+      ],
+      "next": "challenge"
+    },
+    "response_modern": {
+      "id": "response_modern",
+      "text": "Inovação! O Teco adoraria essa ideia. Mas precisamos pensar nos que valorizam as tradições...",
+      "emotion": "considering",
+      "effects": [
+        {"type": "set_flag", "key": "proposal_type", "value": "modern"}
+      ],
+      "next": "challenge"
+    },
+    "response_mixed": {
+      "id": "response_mixed",
+      "text": "Combinar o melhor dos dois mundos! Isso mostra que você realmente ouviu a todos. Essa é uma abordagem sábia!",
+      "emotion": "impressed",
+      "effects": [
+        {"type": "set_flag", "key": "proposal_type", "value": "balanced"}
+      ],
+      "next": "challenge_balanced"
+    },
+    "challenge": {
+      "id": "challenge",
+      "text": "Agora você precisa convencer o Seu Antônio. Ele é muito cético e difícil de convencer. Mas se conseguir a aprovação dele, os outros seguirão.",
+      "emotion": "serious",
+      "next": "good_luck"
+    },
+    "challenge_balanced": {
+      "id": "challenge_balanced",
+      "text": "Uma proposta equilibrada tem mais chance de agradar a todos. Mas ainda assim, você precisará convencer o Seu Antônio. Ele questiona tudo!",
+      "emotion": "encouraging",
+      "next": "good_luck"
+    },
+    "good_luck": {
+      "id": "good_luck",
+      "text": "Boa sorte! Lembre-se: ouça antes de falar, e mostre que você realmente se importa com a vila.",
+      "emotion": "supportive",
+      "effects": [
+        {"type": "set_flag", "key": "proposal_presented", "value": true}
+      ],
+      "competency_effects": {
+        "civic_responsibility": 2
+      },
+      "next": "end"
+    },
+    "encourage": {
+      "id": "encourage",
+      "text": "Sem pressa! Ouvir as pessoas com atenção leva tempo. Volte quando estiver pronto.",
+      "emotion": "patient",
+      "next": "end"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "id": "final_pitch",
+  "npc_name": "Comunidade",
+  "npc_id": "community",
+  "portrait": "community",
+  "start": "assembly_start",
+  "lines": {
+    "assembly_start": {
+      "id": "assembly_start",
+      "speaker": "Dona Flora",
+      "text": "Atenção, moradores de Vila Esperança! Estamos aqui reunidos para decidir o futuro da nossa praça central.",
+      "emotion": "formal",
+      "next": "introduce_speaker"
+    },
+    "introduce_speaker": {
+      "id": "introduce_speaker",
+      "text": "O jovem {player_name} trabalhou duro para ouvir todas as perspectivas. Vamos dar a palavra a ele.",
+      "emotion": "proud",
+      "next": "player_intro"
+    },
+    "player_intro": {
+      "id": "player_intro",
+      "speaker": "Narrador",
+      "text": "Todos os olhares se voltam para você. É hora de apresentar sua proposta final para a comunidade.",
+      "next": "pitch_start"
+    },
+    "pitch_start": {
+      "id": "pitch_start",
+      "text": "Como você quer começar sua apresentação?",
+      "choices": [
+        {
+          "id": "start_story",
+          "text": "Contar uma história sobre a praça",
+          "next": "story_approach",
+          "relationship_points": 4,
+          "competency_effects": {
+            "communication": 2
+          }
+        },
+        {
+          "id": "start_facts",
+          "text": "Apresentar fatos e dados",
+          "next": "facts_approach",
+          "relationship_points": 3,
+          "competency_effects": {
+            "critical_thinking": 2
+          }
+        },
+        {
+          "id": "start_question",
+          "text": "Fazer uma pergunta para a plateia",
+          "next": "question_approach",
+          "relationship_points": 5,
+          "competency_effects": {
+            "collaboration": 2
+          }
+        }
+      ]
+    },
+    "story_approach": {
+      "id": "story_approach",
+      "speaker": "Narrador",
+      "text": "Você conta sobre as memórias que descobriu conversando com os moradores. Os rostos na plateia se iluminam com reconhecimento.",
+      "next": "middle_pitch"
+    },
+    "facts_approach": {
+      "id": "facts_approach",
+      "speaker": "Narrador",
+      "text": "Você apresenta os problemas atuais da praça e as soluções propostas. Alguns assentem em concordância.",
+      "next": "middle_pitch"
+    },
+    "question_approach": {
+      "id": "question_approach",
+      "speaker": "Narrador",
+      "text": "Você pergunta: 'O que a praça significa para vocês?' Várias pessoas começam a compartilhar suas histórias.",
+      "next": "middle_pitch"
+    },
+    "middle_pitch": {
+      "id": "middle_pitch",
+      "text": "Chegou a hora de apresentar sua proposta principal. Como você a descreve?",
+      "choices": [
+        {
+          "id": "emphasize_tradition",
+          "text": "Enfatizar a preservação das tradições",
+          "next": "tradition_response",
+          "competency_effects": {
+            "civic_responsibility": 2
+          }
+        },
+        {
+          "id": "emphasize_innovation",
+          "text": "Destacar as melhorias inovadoras",
+          "next": "innovation_response",
+          "competency_effects": {
+            "creativity": 2
+          }
+        },
+        {
+          "id": "emphasize_balance",
+          "text": "Mostrar como combina o melhor dos dois mundos",
+          "next": "balance_response",
+          "competency_effects": {
+            "critical_thinking": 2,
+            "collaboration": 1
+          }
+        }
+      ]
+    },
+    "tradition_response": {
+      "id": "tradition_response",
+      "speaker": "Seu Antônio",
+      "text": "Isso é o que eu queria ouvir! Precisamos respeitar nossa história.",
+      "emotion": "approving",
+      "next": "challenge_moment"
+    },
+    "innovation_response": {
+      "id": "innovation_response",
+      "speaker": "Teco",
+      "text": "Agora sim! Com essas melhorias, a praça vai ser incrível!",
+      "emotion": "excited",
+      "next": "challenge_moment"
+    },
+    "balance_response": {
+      "id": "balance_response",
+      "speaker": "Dona Flora",
+      "text": "Vejam como ele conseguiu encontrar um caminho que respeita a todos. Isso é liderança!",
+      "emotion": "impressed",
+      "next": "challenge_moment"
+    },
+    "challenge_moment": {
+      "id": "challenge_moment",
+      "speaker": "Voz na Plateia",
+      "text": "Mas como vamos pagar por tudo isso? Quem vai fazer o trabalho?",
+      "emotion": "challenging",
+      "next": "final_answer"
+    },
+    "final_answer": {
+      "id": "final_answer",
+      "text": "Esta é sua chance de mostrar que pensou em tudo. Como você responde?",
+      "choices": [
+        {
+          "id": "answer_community",
+          "text": "Trabalho comunitário - todos ajudam um pouco",
+          "next": "conclusion_community",
+          "relationship_points": 6,
+          "competency_effects": {
+            "collaboration": 3,
+            "civic_responsibility": 2
+          }
+        },
+        {
+          "id": "answer_creative",
+          "text": "Parcerias e soluções criativas de financiamento",
+          "next": "conclusion_creative",
+          "relationship_points": 5,
+          "competency_effects": {
+            "creativity": 3,
+            "critical_thinking": 2
+          }
+        },
+        {
+          "id": "answer_honest",
+          "text": "Ainda precisamos resolver isso juntos",
+          "next": "conclusion_honest",
+          "relationship_points": 4,
+          "competency_effects": {
+            "digital_ethics": 2
+          }
+        }
+      ]
+    },
+    "conclusion_community": {
+      "id": "conclusion_community",
+      "speaker": "Narrador",
+      "text": "A plateia murmura em aprovação. A ideia de trabalhar juntos ressoa com o espírito da vila.",
+      "next": "vote"
+    },
+    "conclusion_creative": {
+      "id": "conclusion_creative",
+      "speaker": "Narrador",
+      "text": "Alguns rostos mostram surpresa positiva. Suas ideias criativas intrigam a comunidade.",
+      "next": "vote"
+    },
+    "conclusion_honest": {
+      "id": "conclusion_honest",
+      "speaker": "Narrador",
+      "text": "Sua honestidade é refrescante. Alguns assentem, apreciando que você não fez promessas vazias.",
+      "next": "vote"
+    },
+    "vote": {
+      "id": "vote",
+      "speaker": "Dona Flora",
+      "text": "Muito bem! Agora, levantamos as mãos. Quem apoia a proposta apresentada?",
+      "emotion": "formal",
+      "next": "vote_result"
+    },
+    "vote_result": {
+      "id": "vote_result",
+      "speaker": "Narrador",
+      "text": "Lentamente, as mãos começam a subir. Primeiro algumas, depois mais e mais, até que a maioria da assembleia está de pé, aplaudindo.",
+      "next": "victory"
+    },
+    "victory": {
+      "id": "victory",
+      "speaker": "Dona Flora",
+      "text": "A proposta foi aprovada! {player_name}, você conseguiu unir nossa comunidade. Estamos todos muito orgulhosos!",
+      "emotion": "joyful",
+      "effects": [
+        {"type": "set_flag", "key": "proposal_approved", "value": true},
+        {"type": "set_flag", "key": "chapter1_vote_complete", "value": true}
+      ],
+      "competency_effects": {
+        "communication": 5,
+        "civic_responsibility": 5,
+        "collaboration": 3
+      },
+      "next": "celebration"
+    },
+    "celebration": {
+      "id": "celebration",
+      "speaker": "Comunidade",
+      "text": "Parabéns, {player_name}! Vamos celebrar!",
+      "emotion": "celebrating",
+      "next": "end"
+    }
+  }
+}

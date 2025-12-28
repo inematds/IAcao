@@ -275,13 +275,212 @@ func _define_chapter1_missions() -> void:
 
 	all_missions[m1.id] = m1
 
-	# Side quest: Explore the village
+	# Chapter 1: Community Problem (Main Quest 2)
 	var m2 := Mission.new()
-	m2.id = "side_explore"
-	m2.title = "Explorador da Vila"
-	m2.description = "Explore Vila Esperança e conheça seus habitantes."
-	m2.is_main_quest = false
-	m2.order = 5
+	m2.id = "ch1_community"
+	m2.title = "O Problema da Comunidade"
+	m2.description = "A praça central precisa de melhorias. Ajude a comunidade a encontrar uma solução."
+	m2.giver_npc = "dona_flora"
+	m2.is_main_quest = true
+	m2.order = 20
+	m2.requirements = {"ch1_help_teco": true}
+
+	var obj_c1 := MissionObjective.new()
+	obj_c1.id = "talk_flora_problem"
+	obj_c1.type = ObjectiveType.COMPLETE_DIALOGUE
+	obj_c1.description = "Fale com Dona Flora sobre o problema"
+	obj_c1.target = "flora_problem"
+	obj_c1.target_count = 1
+	m2.objectives.append(obj_c1)
+
+	var obj_c2 := MissionObjective.new()
+	obj_c2.id = "gather_opinions"
+	obj_c2.type = ObjectiveType.TALK_TO_NPC
+	obj_c2.description = "Colete opiniões de 3 moradores"
+	obj_c2.target = "any"
+	obj_c2.target_count = 3
+	m2.objectives.append(obj_c2)
+
+	var obj_c3 := MissionObjective.new()
+	obj_c3.id = "use_aria_analyze"
+	obj_c3.type = ObjectiveType.USE_ARIA
+	obj_c3.description = "Use ARIA para analisar as opiniões"
+	obj_c3.target = "analyze"
+	obj_c3.target_count = 1
+	m2.objectives.append(obj_c3)
+
+	var rew_c1 := MissionReward.new()
+	rew_c1.type = "competency"
+	rew_c1.key = "critical_thinking"
+	rew_c1.value = 5
+	rew_c1.description = "+5 Pensamento Crítico"
+	m2.rewards.append(rew_c1)
+
+	var rew_c2 := MissionReward.new()
+	rew_c2.type = "competency"
+	rew_c2.key = "collaboration"
+	rew_c2.value = 5
+	rew_c2.description = "+5 Colaboração"
+	m2.rewards.append(rew_c2)
+
+	all_missions[m2.id] = m2
+
+	# Chapter 1: The Solution (Main Quest 3)
+	var m3 := Mission.new()
+	m3.id = "ch1_solution"
+	m3.title = "A Solução Criativa"
+	m3.description = "Com as informações coletadas, proponha uma solução para o problema da praça."
+	m3.giver_npc = "dona_flora"
+	m3.is_main_quest = true
+	m3.order = 30
+	m3.requirements = {"ch1_community": true}
+
+	var obj_s1 := MissionObjective.new()
+	obj_s1.id = "simulate_solution"
+	obj_s1.type = ObjectiveType.USE_ARIA
+	obj_s1.description = "Use ARIA para simular sua solução"
+	obj_s1.target = "simulate"
+	obj_s1.target_count = 1
+	m3.objectives.append(obj_s1)
+
+	var obj_s2 := MissionObjective.new()
+	obj_s2.id = "present_to_flora"
+	obj_s2.type = ObjectiveType.COMPLETE_DIALOGUE
+	obj_s2.description = "Apresente sua ideia para Dona Flora"
+	obj_s2.target = "flora_present"
+	obj_s2.target_count = 1
+	m3.objectives.append(obj_s2)
+
+	var obj_s3 := MissionObjective.new()
+	obj_s3.id = "convince_skeptic"
+	obj_s3.type = ObjectiveType.MAKE_CHOICE
+	obj_s3.description = "Convença o morador cético"
+	obj_s3.target = "choice_convince"
+	obj_s3.target_count = 1
+	m3.objectives.append(obj_s3)
+
+	var rew_s1 := MissionReward.new()
+	rew_s1.type = "competency"
+	rew_s1.key = "creativity"
+	rew_s1.value = 8
+	rew_s1.description = "+8 Criatividade"
+	m3.rewards.append(rew_s1)
+
+	var rew_s2 := MissionReward.new()
+	rew_s2.type = "competency"
+	rew_s2.key = "communication"
+	rew_s2.value = 5
+	rew_s2.description = "+5 Comunicação"
+	m3.rewards.append(rew_s2)
+
+	all_missions[m3.id] = m3
+
+	# Chapter 1: The Vote (Main Quest 4)
+	var m4 := Mission.new()
+	m4.id = "ch1_vote"
+	m4.title = "A Decisão da Vila"
+	m4.description = "A comunidade vai votar nas propostas. Prepare-se para defender sua ideia."
+	m4.giver_npc = "dona_flora"
+	m4.is_main_quest = true
+	m4.order = 40
+	m4.requirements = {"ch1_solution": true}
+
+	var obj_v1 := MissionObjective.new()
+	obj_v1.id = "improve_proposal"
+	obj_v1.type = ObjectiveType.USE_ARIA
+	obj_v1.description = "Use ARIA para melhorar sua proposta"
+	obj_v1.target = "improve"
+	obj_v1.target_count = 1
+	m4.objectives.append(obj_v1)
+
+	var obj_v2 := MissionObjective.new()
+	obj_v2.id = "talk_supporters"
+	obj_v2.type = ObjectiveType.TALK_TO_NPC
+	obj_v2.description = "Converse com 2 apoiadores"
+	obj_v2.target = "any"
+	obj_v2.target_count = 2
+	m4.objectives.append(obj_v2)
+
+	var obj_v3 := MissionObjective.new()
+	obj_v3.id = "final_presentation"
+	obj_v3.type = ObjectiveType.COMPLETE_DIALOGUE
+	obj_v3.description = "Faça a apresentação final"
+	obj_v3.target = "final_pitch"
+	obj_v3.target_count = 1
+	m4.objectives.append(obj_v3)
+
+	var rew_v1 := MissionReward.new()
+	rew_v1.type = "competency"
+	rew_v1.key = "civic_responsibility"
+	rew_v1.value = 10
+	rew_v1.description = "+10 Responsabilidade Cívica"
+	m4.rewards.append(rew_v1)
+
+	var rew_v2 := MissionReward.new()
+	rew_v2.type = "flag"
+	rew_v2.key = "chapter1_complete"
+	rew_v2.value = true
+	rew_v2.description = "Capítulo 1 Completo!"
+	m4.rewards.append(rew_v2)
+
+	all_missions[m4.id] = m4
+
+	# Chapter 1: Epilogue (Main Quest 5)
+	var m5 := Mission.new()
+	m5.id = "ch1_epilogue"
+	m5.title = "Um Novo Começo"
+	m5.description = "A vila celebra a decisão tomada. Veja os resultados do seu trabalho."
+	m5.giver_npc = "dona_flora"
+	m5.is_main_quest = true
+	m5.order = 50
+	m5.requirements = {"ch1_vote": true}
+
+	var obj_e1 := MissionObjective.new()
+	obj_e1.id = "see_results"
+	obj_e1.type = ObjectiveType.REACH_LOCATION
+	obj_e1.description = "Vá até a praça ver os resultados"
+	obj_e1.target = "praca_central"
+	obj_e1.target_count = 1
+	m5.objectives.append(obj_e1)
+
+	var obj_e2 := MissionObjective.new()
+	obj_e2.id = "talk_celebration"
+	obj_e2.type = ObjectiveType.TALK_TO_NPC
+	obj_e2.description = "Converse com os moradores na celebração"
+	obj_e2.target = "any"
+	obj_e2.target_count = 2
+	m5.objectives.append(obj_e2)
+
+	var obj_e3 := MissionObjective.new()
+	obj_e3.id = "reflection"
+	obj_e3.type = ObjectiveType.USE_ARIA
+	obj_e3.description = "Reflita sobre a jornada com ARIA"
+	obj_e3.target = "analyze"
+	obj_e3.target_count = 1
+	m5.objectives.append(obj_e3)
+
+	var rew_e1 := MissionReward.new()
+	rew_e1.type = "energy"
+	rew_e1.value = 50
+	rew_e1.description = "+50 Energia"
+	m5.rewards.append(rew_e1)
+
+	var rew_e2 := MissionReward.new()
+	rew_e2.type = "unlock"
+	rew_e2.key = "chapter2"
+	rew_e2.value = true
+	rew_e2.description = "Capítulo 2 Desbloqueado!"
+	m5.rewards.append(rew_e2)
+
+	all_missions[m5.id] = m5
+
+	# Side quest: Explore the village
+	var side1 := Mission.new()
+	side1.id = "side_explore"
+	side1.title = "Explorador da Vila"
+	side1.description = "Explore Vila Esperança e conheça seus habitantes."
+	side1.is_main_quest = false
+	side1.order = 5
 
 	var obj_explore1 := MissionObjective.new()
 	obj_explore1.id = "visit_escola"
@@ -289,7 +488,7 @@ func _define_chapter1_missions() -> void:
 	obj_explore1.description = "Visite a Escola"
 	obj_explore1.target = "escola"
 	obj_explore1.target_count = 1
-	m2.objectives.append(obj_explore1)
+	side1.objectives.append(obj_explore1)
 
 	var obj_explore2 := MissionObjective.new()
 	obj_explore2.id = "talk_3_npcs"
@@ -297,16 +496,16 @@ func _define_chapter1_missions() -> void:
 	obj_explore2.description = "Converse com 3 moradores"
 	obj_explore2.target = "any"
 	obj_explore2.target_count = 3
-	m2.objectives.append(obj_explore2)
+	side1.objectives.append(obj_explore2)
 
 	var rew_explore := MissionReward.new()
 	rew_explore.type = "competency"
 	rew_explore.key = "communication"
 	rew_explore.value = 5
 	rew_explore.description = "+5 Comunicação"
-	m2.rewards.append(rew_explore)
+	side1.rewards.append(rew_explore)
 
-	all_missions[m2.id] = m2
+	all_missions[side1.id] = side1
 
 
 # ===========================================
@@ -391,23 +590,54 @@ func complete_mission(mission_id: String) -> void:
 		push_warning("[MissionManager] Mission objectives not complete: %s" % mission_id)
 		return
 
+	_finalize_mission(mission)
+
+
+func force_complete_mission(mission_id: String) -> bool:
+	## Force complete a mission (for debug purposes)
+	if not all_missions.has(mission_id):
+		return false
+
+	var mission: Mission = all_missions[mission_id]
+
+	# Force complete all objectives
+	for obj in mission.objectives:
+		obj.current_count = obj.target_count
+		obj.is_complete = true
+
+	# Start if not active
+	if mission.status == MissionStatus.AVAILABLE:
+		mission.status = MissionStatus.ACTIVE
+		mission.started_at = int(Time.get_unix_time_from_system())
+		if not active_missions.has(mission_id):
+			active_missions.append(mission_id)
+
+	if mission.status == MissionStatus.ACTIVE:
+		_finalize_mission(mission)
+		return true
+
+	return false
+
+
+func _finalize_mission(mission: Mission) -> void:
 	mission.status = MissionStatus.COMPLETED
 	mission.completed_at = int(Time.get_unix_time_from_system())
 
-	active_missions.erase(mission_id)
-	completed_missions.append(mission_id)
+	active_missions.erase(mission.id)
+	if not completed_missions.has(mission.id):
+		completed_missions.append(mission.id)
 
 	# Apply rewards
 	_apply_rewards(mission)
 
 	# Set completion flag
-	GameManager.set_flag("mission_complete_" + mission_id, true)
+	GameManager.set_flag("mission_complete_" + mission.id, true)
 
 	mission_completed.emit(mission)
 	print("[MissionManager] Completed mission: %s" % mission.title)
 
 	# Send to backend
-	APIClient.complete_mission(mission_id, mission.to_dict())
+	APIClient.complete_mission(mission.id, mission.to_dict())
 
 
 func fail_mission(mission_id: String) -> void:
