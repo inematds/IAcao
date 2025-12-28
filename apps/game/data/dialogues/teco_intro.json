@@ -1,0 +1,245 @@
+{
+  "id": "teco_intro",
+  "npc_name": "Teco",
+  "npc_id": "teco",
+  "portrait": "teco",
+  "start": "check_times",
+  "lines": {
+    "check_times": {
+      "id": "check_times",
+      "text": "",
+      "conditions": [
+        {"type": "times_talked", "operator": ">=", "value": 3}
+      ],
+      "next": "greeting_friend"
+    },
+    "greeting_friend": {
+      "id": "greeting_friend",
+      "speaker": "Teco",
+      "text": "Ei, {player_name}! Meu ajudante favorito! Você já veio aqui {times_talked} vezes!",
+      "emotion": "excited",
+      "effects": [
+        {"type": "add_relationship", "value": 3}
+      ],
+      "next": "friend_options"
+    },
+    "friend_options": {
+      "id": "friend_options",
+      "text": "Tô trabalhando em algo bem legal. Quer ver?",
+      "choices": [
+        {
+          "id": "see_project",
+          "text": "Claro, me mostra!",
+          "next": "show_project",
+          "relationship_points": 5
+        },
+        {
+          "id": "help_project",
+          "text": "Posso ajudar em algo?",
+          "next": "offer_help",
+          "relationship_points": 4
+        },
+        {
+          "id": "just_saying_hi",
+          "text": "Só passando pra dar um oi!",
+          "next": "goodbye_friend",
+          "relationship_points": 2
+        }
+      ]
+    },
+    "show_project": {
+      "id": "show_project",
+      "text": "Olha só esse robozinho que estou montando! Ele consegue identificar cores e sons!",
+      "emotion": "excited",
+      "next": "project_explain"
+    },
+    "project_explain": {
+      "id": "project_explain",
+      "text": "A parte mais legal é programar ele pra tomar decisões sozinho. É tipo ensinar uma criança, sabe?",
+      "emotion": "thoughtful",
+      "effects": [
+        {"type": "set_npc_flag", "key": "showed_robot", "value": true}
+      ],
+      "competency_effects": {
+        "logic": 2,
+        "creativity": 1
+      },
+      "next": "end"
+    },
+    "offer_help": {
+      "id": "offer_help",
+      "text": "Sério?! Você é demais! Tenho umas peças que precisam ser organizadas. Pode me ajudar depois?",
+      "emotion": "happy",
+      "effects": [
+        {"type": "set_flag", "key": "teco_help_quest_available", "value": true}
+      ],
+      "competency_effects": {
+        "collaboration": 2
+      },
+      "next": "end"
+    },
+    "goodbye_friend": {
+      "id": "goodbye_friend",
+      "text": "Valeu pela visita! É sempre bom ver um amigo. Volta quando quiser!",
+      "emotion": "happy",
+      "competency_effects": {
+        "communication": 1
+      },
+      "next": "end"
+    },
+    "check_met": {
+      "id": "check_met",
+      "text": "",
+      "conditions": [
+        {"type": "flag", "key": "met_teco", "operator": "==", "value": true}
+      ],
+      "next": "greeting_return"
+    },
+    "greeting_return": {
+      "id": "greeting_return",
+      "speaker": "Teco",
+      "text": "E aí, {player_name}! Voltou pra oficina!",
+      "emotion": "happy",
+      "effects": [
+        {"type": "add_relationship", "value": 1}
+      ],
+      "next": "return_options"
+    },
+    "return_options": {
+      "id": "return_options",
+      "text": "O que te traz aqui hoje?",
+      "choices": [
+        {
+          "id": "learn_more",
+          "text": "Quero aprender sobre invenções!",
+          "next": "teach_invention",
+          "relationship_points": 3
+        },
+        {
+          "id": "chat",
+          "text": "Só vim conversar um pouco",
+          "next": "casual_chat",
+          "relationship_points": 2
+        }
+      ]
+    },
+    "teach_invention": {
+      "id": "teach_invention",
+      "text": "Massa! O segredo de inventar é não ter medo de errar. Todo erro é um passo pra acertar!",
+      "emotion": "wise",
+      "competency_effects": {
+        "creativity": 1,
+        "critical_thinking": 1
+      },
+      "next": "teach_invention_2"
+    },
+    "teach_invention_2": {
+      "id": "teach_invention_2",
+      "text": "E sempre anote suas ideias! Eu tenho um caderno cheio delas. A maioria é maluca, mas algumas dão certo!",
+      "emotion": "excited",
+      "next": "end"
+    },
+    "casual_chat": {
+      "id": "casual_chat",
+      "text": "Legal! Conversar também faz parte do processo criativo. Às vezes a melhor ideia vem quando a gente relaxa!",
+      "emotion": "relaxed",
+      "next": "end"
+    },
+    "greeting": {
+      "id": "greeting",
+      "speaker": "Teco",
+      "text": "Oi, {player_name}! Que bom te ver por aqui na minha oficina!",
+      "emotion": "happy",
+      "next": "intro"
+    },
+    "intro": {
+      "id": "intro",
+      "text": "Eu sou o Teco, o inventor da vila. Adoro criar coisas e resolver problemas com criatividade!",
+      "emotion": "neutral",
+      "next": "question"
+    },
+    "question": {
+      "id": "question",
+      "text": "Você também gosta de inventar coisas? O que te interessa mais?",
+      "emotion": "curious",
+      "choices": [
+        {
+          "id": "choice_tech",
+          "text": "Adoro tecnologia e computadores!",
+          "next": "response_tech",
+          "relationship_points": 5,
+          "competency_effects": {
+            "logic": 2
+          },
+          "effects": [
+            {"type": "set_npc_flag", "key": "player_interest", "value": "tech"}
+          ]
+        },
+        {
+          "id": "choice_art",
+          "text": "Prefiro arte e criatividade!",
+          "next": "response_art",
+          "relationship_points": 5,
+          "competency_effects": {
+            "creativity": 2
+          },
+          "effects": [
+            {"type": "set_npc_flag", "key": "player_interest", "value": "art"}
+          ]
+        },
+        {
+          "id": "choice_both",
+          "text": "Gosto de misturar os dois!",
+          "next": "response_both",
+          "relationship_points": 6,
+          "competency_effects": {
+            "creativity": 1,
+            "logic": 1
+          },
+          "effects": [
+            {"type": "set_npc_flag", "key": "player_interest", "value": "both"}
+          ]
+        },
+        {
+          "id": "choice_unsure",
+          "text": "Ainda não sei bem...",
+          "next": "response_unsure",
+          "relationship_points": 3
+        }
+      ]
+    },
+    "response_tech": {
+      "id": "response_tech",
+      "text": "Incrível! Eu tenho alguns projetos de robótica que podem te interessar. Quem sabe um dia você me ajuda!",
+      "emotion": "excited",
+      "next": "closing"
+    },
+    "response_art": {
+      "id": "response_art",
+      "text": "Que legal! A arte é fundamental na invenção. Os melhores inventores são também artistas!",
+      "emotion": "happy",
+      "next": "closing"
+    },
+    "response_both": {
+      "id": "response_both",
+      "text": "Você pensa como eu! A magia acontece quando unimos criatividade com lógica!",
+      "emotion": "excited",
+      "next": "closing"
+    },
+    "response_unsure": {
+      "id": "response_unsure",
+      "text": "Não tem problema! Explorar é a melhor forma de descobrir. Volte sempre!",
+      "emotion": "friendly",
+      "next": "closing"
+    },
+    "closing": {
+      "id": "closing",
+      "text": "Fico feliz em conhecer você, {player_name}. Se precisar de ajuda com algum projeto, é só me procurar!",
+      "emotion": "happy",
+      "effects": [
+        {"type": "set_flag", "key": "met_teco", "value": true}
+      ],
+      "next": "end"
+    }
+  }
+}

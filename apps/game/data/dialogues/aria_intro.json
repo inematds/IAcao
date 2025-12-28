@@ -1,0 +1,118 @@
+{
+  "id": "aria_intro",
+  "npc_name": "ARIA",
+  "npc_id": "aria",
+  "portrait": "aria",
+  "start": "greeting",
+  "lines": {
+    "greeting": {
+      "id": "greeting",
+      "speaker": "ARIA",
+      "text": "Olá, {player_name}! Eu sou ARIA, sua assistente de inteligência artificial.",
+      "emotion": "friendly",
+      "next": "explain"
+    },
+    "explain": {
+      "id": "explain",
+      "text": "Estou aqui para te ajudar a pensar, criar e resolver problemas. Mas lembre-se: eu sou uma ferramenta, não a resposta!",
+      "emotion": "informative",
+      "next": "energy_explain"
+    },
+    "energy_explain": {
+      "id": "energy_explain",
+      "text": "Cada vez que você me usar, gastará um pouco de energia. Você tem {energy} pontos agora.",
+      "emotion": "neutral",
+      "next": "actions_explain"
+    },
+    "actions_explain": {
+      "id": "actions_explain",
+      "text": "Posso te ajudar de quatro formas: Analisar situações, Sugerir ideias, Simular resultados e Melhorar suas criações.",
+      "emotion": "helpful",
+      "next": "question"
+    },
+    "question": {
+      "id": "question",
+      "text": "Quer que eu explique melhor como cada ação funciona?",
+      "choices": [
+        {
+          "id": "yes_explain",
+          "text": "Sim, me explique!",
+          "next": "explain_analyze"
+        },
+        {
+          "id": "no_thanks",
+          "text": "Não precisa, entendi!",
+          "next": "closing_quick"
+        },
+        {
+          "id": "later",
+          "text": "Talvez depois...",
+          "next": "closing_later"
+        }
+      ]
+    },
+    "explain_analyze": {
+      "id": "explain_analyze",
+      "text": "ANALISAR: Eu examino uma situação e te ajudo a entender os diferentes aspectos dela. Custa 10 de energia.",
+      "emotion": "informative",
+      "next": "explain_suggest"
+    },
+    "explain_suggest": {
+      "id": "explain_suggest",
+      "text": "SUGERIR: Te dou ideias e possibilidades, mas você decide o que fazer com elas. Custa 15 de energia.",
+      "emotion": "creative",
+      "next": "explain_simulate"
+    },
+    "explain_simulate": {
+      "id": "explain_simulate",
+      "text": "SIMULAR: Mostro possíveis consequências de uma escolha, para você decidir melhor. Custa 15 de energia.",
+      "emotion": "thoughtful",
+      "next": "explain_improve"
+    },
+    "explain_improve": {
+      "id": "explain_improve",
+      "text": "MELHORAR: Analiso algo que você criou e sugiro como pode ficar ainda melhor. Custa 20 de energia.",
+      "emotion": "encouraging",
+      "next": "important_note"
+    },
+    "important_note": {
+      "id": "important_note",
+      "text": "Importante: Eu te ajudo a PENSAR, não dou respostas prontas. O aprendizado vem de você!",
+      "emotion": "serious",
+      "next": "closing_full"
+    },
+    "closing_full": {
+      "id": "closing_full",
+      "text": "Pressione 'A' a qualquer momento para me chamar. Boa sorte nas suas aventuras, {player_name}!",
+      "emotion": "happy",
+      "effects": [
+        {"type": "set_flag", "key": "aria_tutorial_complete", "value": true}
+      ],
+      "competency_effects": {
+        "digital_ethics": 2
+      },
+      "next": "end"
+    },
+    "closing_quick": {
+      "id": "closing_quick",
+      "text": "Ótimo! Você aprende rápido. Pressione 'A' quando precisar de mim. Até mais!",
+      "emotion": "happy",
+      "effects": [
+        {"type": "set_flag", "key": "aria_tutorial_complete", "value": true}
+      ],
+      "competency_effects": {
+        "digital_ethics": 1
+      },
+      "next": "end"
+    },
+    "closing_later": {
+      "id": "closing_later",
+      "text": "Sem problemas! Quando quiser saber mais, é só me chamar com 'A'. Estarei aqui!",
+      "emotion": "understanding",
+      "effects": [
+        {"type": "set_flag", "key": "aria_intro_started", "value": true}
+      ],
+      "next": "end"
+    }
+  }
+}

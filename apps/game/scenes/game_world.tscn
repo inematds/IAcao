@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://game_world"]
+[gd_scene load_steps=5 format=3 uid="uid://game_world"]
 
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_world"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://area_praca_central" path="res://scenes/areas/praca_central.tscn" id="3_praca"]
+[ext_resource type="PackedScene" uid="uid://dialogue_ui" path="res://scenes/ui/dialogue_ui.tscn" id="4_dialogue_ui"]
 
 [node name="GameWorld" type="Node2D" groups=["game_world"]]
 script = ExtResource("1_world")
@@ -152,6 +153,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.1, 0.1, 0.15, 0.8)
+
+[node name="DialogueUI" parent="." instance=ExtResource("4_dialogue_ui")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(28, 16)

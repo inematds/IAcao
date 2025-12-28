@@ -25,6 +25,7 @@ APIClient="*res://scripts/autoloads/api_client.gd"
 SaveManager="*res://scripts/autoloads/save_manager.gd"
 AudioManager="*res://scripts/autoloads/audio_manager.gd"
 SceneManager="*res://scripts/autoloads/scene_manager.gd"
+DialogueManager="*res://scripts/dialogue/dialogue_manager.gd"
 
 [display]
 

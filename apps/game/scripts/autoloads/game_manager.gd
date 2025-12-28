@@ -29,6 +29,7 @@ var world_flags: Dictionary = {}
 var current_region := "vila_esperanca"
 var current_area := "praca_central"
 var energy := MAX_ENERGY
+var player_name := "Jogador"
 
 # ===========================================
 # Lifecycle
@@ -94,6 +95,10 @@ func has_energy(amount: int) -> bool:
 # ===========================================
 
 func get_competency(type: String) -> int:
+	return competencies.get(type, 0)
+
+
+func get_competency_level(type: String) -> int:
 	return competencies.get(type, 0)
 
 

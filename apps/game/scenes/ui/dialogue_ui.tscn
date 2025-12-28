@@ -1,0 +1,129 @@
+[gd_scene load_steps=2 format=3 uid="uid://dialogue_ui"]
+
+[ext_resource type="Script" path="res://scripts/dialogue/dialogue_ui.gd" id="1_script"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="DialoguePanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -200.0
+offset_right = -40.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelStyle" type="StyleBoxFlat" parent="DialoguePanel"]
+bg_color = Color(0.1, 0.12, 0.18, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.35, 0.5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HBox" type="HBoxContainer" parent="DialoguePanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Portrait" type="TextureRect" parent="DialoguePanel/HBox"]
+visible = false
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PortraitPlaceholder" type="ColorRect" parent="DialoguePanel/HBox"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+color = Color(0.4, 0.5, 0.6, 1)
+
+[node name="PortraitIcon" type="Label" parent="DialoguePanel/HBox/PortraitPlaceholder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 32
+text = "👤"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="DialoguePanel/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="SpeakerLabel" type="Label" parent="DialoguePanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.5, 1)
+theme_override_font_sizes/font_size = 20
+text = "Nome do NPC"
+
+[node name="TextLabel" type="RichTextLabel" parent="DialoguePanel/HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.95, 0.95, 0.98, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Texto do diálogo vai aparecer aqui com efeito de digitação..."
+
+[node name="ContinueIndicator" type="Label" parent="DialoguePanel/HBox/VBox"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.9, 1)
+theme_override_font_sizes/font_size = 14
+text = "▼ Pressione para continuar"
+horizontal_alignment = 2
+
+[node name="ChoicesPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_top = -420.0
+offset_right = -200.0
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ChoicesPanelStyle" type="StyleBoxFlat" parent="ChoicesPanel"]
+bg_color = Color(0.08, 0.1, 0.15, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.55, 0.7, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="ChoicesPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ChoicesTitle" type="Label" parent="ChoicesPanel/ChoicesContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.5, 1)
+theme_override_font_sizes/font_size = 16
+text = "O que você quer dizer?"

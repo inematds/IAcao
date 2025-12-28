@@ -1,0 +1,321 @@
+{
+  "id": "dona_flora",
+  "npc_name": "Dona Flora",
+  "npc_id": "dona_flora",
+  "portrait": "dona_flora",
+  "start": "check_times_talked",
+  "lines": {
+    "check_times_talked": {
+      "id": "check_times_talked",
+      "text": "",
+      "conditions": [
+        {"type": "times_talked", "operator": ">=", "value": 5}
+      ],
+      "next": "greeting_close_friend"
+    },
+    "greeting_close_friend": {
+      "id": "greeting_close_friend",
+      "speaker": "Dona Flora",
+      "text": "Ah, {player_name}! Meu jovem amigo preferido! Você já veio me visitar {times_talked} vezes, sabia?",
+      "emotion": "happy",
+      "effects": [
+        {"type": "add_relationship", "value": 3}
+      ],
+      "next": "friend_options"
+    },
+    "friend_options": {
+      "id": "friend_options",
+      "text": "Nossa amizade ({relationship_level}) me aquece o coração. O que posso fazer por você hoje?",
+      "choices": [
+        {
+          "id": "secret_story",
+          "text": "Conte uma história especial!",
+          "next": "secret_story",
+          "relationship_points": 5
+        },
+        {
+          "id": "ask_wisdom",
+          "text": "Preciso de sua sabedoria...",
+          "next": "wisdom_deep",
+          "relationship_points": 3
+        },
+        {
+          "id": "just_chat",
+          "text": "Só queria ver como a senhora está!",
+          "next": "goodbye_friend",
+          "relationship_points": 2
+        }
+      ]
+    },
+    "secret_story": {
+      "id": "secret_story",
+      "text": "Para um amigo tão especial, vou contar algo que poucos sabem... A vila foi construída sobre as ruínas de uma antiga escola de inventores!",
+      "emotion": "excited",
+      "effects": [
+        {"type": "set_npc_flag", "key": "told_secret", "value": true},
+        {"type": "set_flag", "key": "knows_village_secret", "value": true}
+      ],
+      "next": "secret_story_2"
+    },
+    "secret_story_2": {
+      "id": "secret_story_2",
+      "text": "Dizem que ainda existem passagens secretas e tesouros escondidos. Mas isso fica entre nós, certo?",
+      "emotion": "wink",
+      "competency_effects": {
+        "critical_thinking": 3,
+        "creativity": 2
+      },
+      "next": "end"
+    },
+    "wisdom_deep": {
+      "id": "wisdom_deep",
+      "text": "A verdadeira sabedoria não está em ter todas as respostas, mas em saber fazer as perguntas certas. E você, querido, já demonstrou ser muito sábio.",
+      "emotion": "wise",
+      "competency_effects": {
+        "critical_thinking": 2
+      },
+      "next": "end"
+    },
+    "goodbye_friend": {
+      "id": "goodbye_friend",
+      "text": "Que alma gentil! É isso que faz de você alguém tão especial. Volte sempre, meu jovem!",
+      "emotion": "touched",
+      "competency_effects": {
+        "communication": 1
+      },
+      "next": "end"
+    },
+    "check_met": {
+      "id": "check_met",
+      "text": "",
+      "conditions": [
+        {"type": "flag", "key": "met_dona_flora", "operator": "==", "value": true}
+      ],
+      "next": "greeting_return"
+    },
+    "greeting_return": {
+      "id": "greeting_return",
+      "speaker": "Dona Flora",
+      "text": "Olá de novo, {player_name}! Voltou para mais uma história?",
+      "emotion": "happy",
+      "effects": [
+        {"type": "add_relationship", "value": 1}
+      ],
+      "next": "return_options"
+    },
+    "return_options": {
+      "id": "return_options",
+      "text": "O que você gostaria de ouvir hoje?",
+      "choices": [
+        {
+          "id": "history_vila",
+          "text": "Conte sobre a história da vila!",
+          "next": "story_vila",
+          "relationship_points": 2
+        },
+        {
+          "id": "advice",
+          "text": "Preciso de um conselho...",
+          "next": "advice_prompt",
+          "relationship_points": 3
+        },
+        {
+          "id": "goodbye_return",
+          "text": "Só vim dar um oi!",
+          "next": "goodbye",
+          "relationship_points": 1
+        }
+      ]
+    },
+    "story_vila": {
+      "id": "story_vila",
+      "text": "Vila Esperança foi fundada há muitos anos por pessoas que sonhavam em criar um lugar onde todos pudessem aprender e crescer juntos.",
+      "emotion": "thoughtful",
+      "next": "story_vila_2"
+    },
+    "story_vila_2": {
+      "id": "story_vila_2",
+      "text": "E esse sonho continua vivo em cada um de nós. Você também faz parte dessa história agora!",
+      "emotion": "happy",
+      "competency_effects": {
+        "communication": 1
+      },
+      "next": "end"
+    },
+    "advice_prompt": {
+      "id": "advice_prompt",
+      "text": "Claro, querido. Sobre o que você precisa de conselho?",
+      "emotion": "caring",
+      "choices": [
+        {
+          "id": "advice_friends",
+          "text": "Sobre fazer amigos",
+          "next": "check_gave_friend_advice",
+          "relationship_points": 2
+        },
+        {
+          "id": "advice_difficult",
+          "text": "Algo difícil que preciso fazer",
+          "next": "check_gave_difficult_advice",
+          "relationship_points": 2
+        }
+      ]
+    },
+    "check_gave_friend_advice": {
+      "id": "check_gave_friend_advice",
+      "text": "",
+      "conditions": [
+        {"type": "made_choice", "key": "advice_friends", "operator": "==", "value": true}
+      ],
+      "next": "advice_friends_again"
+    },
+    "advice_friends_again": {
+      "id": "advice_friends_again",
+      "text": "Já conversamos sobre isso antes, lembra? Mas nunca é demais repetir: seja você mesmo, tenha paciência e as amizades verdadeiras virão!",
+      "emotion": "caring",
+      "competency_effects": {
+        "communication": 1
+      },
+      "next": "end"
+    },
+    "advice_friends_response": {
+      "id": "advice_friends_response",
+      "text": "A amizade é como uma plantinha - precisa de cuidado, paciência e sinceridade. Seja você mesmo e as amizades certas virão naturalmente.",
+      "emotion": "wise",
+      "effects": [
+        {"type": "set_flag", "key": "received_advice_friends", "value": true}
+      ],
+      "competency_effects": {
+        "communication": 2,
+        "collaboration": 1
+      },
+      "next": "end"
+    },
+    "check_gave_difficult_advice": {
+      "id": "check_gave_difficult_advice",
+      "text": "",
+      "conditions": [
+        {"type": "made_choice", "key": "advice_difficult", "operator": "==", "value": true}
+      ],
+      "next": "advice_difficult_again"
+    },
+    "advice_difficult_again": {
+      "id": "advice_difficult_again",
+      "text": "Lembro que já conversamos sobre enfrentar desafios. Como está indo? Lembre-se: um passo de cada vez!",
+      "emotion": "encouraging",
+      "competency_effects": {
+        "critical_thinking": 1
+      },
+      "next": "end"
+    },
+    "advice_difficult_response": {
+      "id": "advice_difficult_response",
+      "text": "Coisas difíceis nos fazem crescer. Não tenha medo de pedir ajuda e vá um passo de cada vez. Você é mais capaz do que imagina!",
+      "emotion": "encouraging",
+      "effects": [
+        {"type": "set_flag", "key": "received_advice_difficult", "value": true}
+      ],
+      "competency_effects": {
+        "critical_thinking": 2
+      },
+      "next": "end"
+    },
+    "greeting_first": {
+      "id": "greeting_first",
+      "speaker": "Dona Flora",
+      "text": "Olá, jovem! Não me lembro de ter visto você por aqui antes. Como se chama?",
+      "emotion": "curious",
+      "next": "introduce"
+    },
+    "introduce": {
+      "id": "introduce",
+      "text": "Ah, {player_name}! Que nome bonito. Eu sou Dona Flora, a guardiã das histórias de Vila Esperança.",
+      "emotion": "happy",
+      "next": "wisdom"
+    },
+    "wisdom": {
+      "id": "wisdom",
+      "text": "Sabe, cada pessoa que passa por aqui tem uma história para contar e lições para ensinar.",
+      "emotion": "wise",
+      "next": "first_question"
+    },
+    "first_question": {
+      "id": "first_question",
+      "text": "E você, {player_name}, que tipo de história quer escrever aqui na nossa vila?",
+      "choices": [
+        {
+          "id": "story_adventure",
+          "text": "Uma história de aventuras!",
+          "next": "response_adventure",
+          "relationship_points": 5,
+          "competency_effects": {
+            "creativity": 2
+          }
+        },
+        {
+          "id": "story_help",
+          "text": "Quero ajudar as pessoas!",
+          "next": "response_help",
+          "relationship_points": 5,
+          "competency_effects": {
+            "collaboration": 2
+          }
+        },
+        {
+          "id": "story_learn",
+          "text": "Quero aprender muitas coisas!",
+          "next": "response_learn",
+          "relationship_points": 5,
+          "competency_effects": {
+            "critical_thinking": 2
+          }
+        }
+      ]
+    },
+    "response_adventure": {
+      "id": "response_adventure",
+      "text": "Aventureiro! A vila tem muitos mistérios esperando para serem descobertos. Mantenha os olhos abertos!",
+      "emotion": "excited",
+      "effects": [
+        {"type": "set_flag", "key": "flora_knows_adventurer", "value": true},
+        {"type": "set_npc_flag", "key": "player_type", "value": "adventurer"}
+      ],
+      "next": "closing_first"
+    },
+    "response_help": {
+      "id": "response_help",
+      "text": "Que coração generoso! As pessoas aqui sempre precisam de uma mãozinha. Você vai fazer muitos amigos!",
+      "emotion": "touched",
+      "effects": [
+        {"type": "set_flag", "key": "flora_knows_helper", "value": true},
+        {"type": "set_npc_flag", "key": "player_type", "value": "helper"}
+      ],
+      "next": "closing_first"
+    },
+    "response_learn": {
+      "id": "response_learn",
+      "text": "Um estudante dedicado! Há muito conhecimento espalhado pela vila. A escola e a biblioteca são ótimos lugares para começar!",
+      "emotion": "proud",
+      "effects": [
+        {"type": "set_flag", "key": "flora_knows_learner", "value": true},
+        {"type": "set_npc_flag", "key": "player_type", "value": "learner"}
+      ],
+      "next": "closing_first"
+    },
+    "closing_first": {
+      "id": "closing_first",
+      "text": "Foi um prazer conhecer você, {player_name}. Volte sempre para me visitar e contar suas histórias!",
+      "emotion": "happy",
+      "effects": [
+        {"type": "set_flag", "key": "met_dona_flora", "value": true}
+      ],
+      "next": "end"
+    },
+    "goodbye": {
+      "id": "goodbye",
+      "text": "Que gentileza! Volte sempre, {player_name}. Cuide-se!",
+      "emotion": "happy",
+      "next": "end"
+    }
+  }
+}

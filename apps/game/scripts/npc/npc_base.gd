@@ -230,6 +230,9 @@ func interact(player: Node2D) -> void:
 
 	if dialogue_id != "":
 		dialogue_requested.emit(dialogue_id)
+		# Start dialogue through DialogueManager
+		DialogueManager.dialogue_ended.connect(_on_dialogue_ended, CONNECT_ONE_SHOT)
+		DialogueManager.start_dialogue(dialogue_id)
 	else:
 		# Default: just say something
 		_default_dialogue()
@@ -242,6 +245,10 @@ func _default_dialogue() -> void:
 	end_interaction()
 
 
+func _on_dialogue_ended(id: String) -> void:
+	end_interaction()
+
+
 func end_interaction() -> void:
 	if interacting_player and interacting_player.has_method("end_interaction"):
 		interacting_player.end_interaction()
@@ -250,13 +257,36 @@ func end_interaction() -> void:
 
 func _show_indicator() -> void:
 	if indicator:
-		indicator.text = npc_name
+		var display_text := npc_name
+
+		# Add relationship indicator if player has met this NPC
+		if npc_id != "" and DialogueManager.has_met_npc(npc_id):
+			var rel_level := DialogueManager.get_relationship_level_with(npc_id)
+			var heart := _get_relationship_icon(rel_level)
+			if heart != "":
+				display_text = "%s %s" % [heart, npc_name]
+
+		indicator.text = display_text
 		indicator.visible = true
 
 
 func _hide_indicator() -> void:
 	if indicator:
 		indicator.visible = false
+
+
+func _get_relationship_icon(level: int) -> String:
+	match level:
+		NPCMemory.RelationshipLevel.BEST_FRIEND:
+			return "💖"
+		NPCMemory.RelationshipLevel.CLOSE_FRIEND:
+			return "❤️"
+		NPCMemory.RelationshipLevel.FRIEND:
+			return "💛"
+		NPCMemory.RelationshipLevel.ACQUAINTANCE:
+			return "💙"
+		_:
+			return ""
 
 
 # ===========================================
